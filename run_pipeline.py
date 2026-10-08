@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""Pipeline de análise da insatisfação de clientes (Olist).
-
-Etapas:
-  load   -> carga dos CSVs + feature engineering  (outputs/)
-  eda    -> análise exploratória                  (reports/figures, reports/tables)
-  tests  -> testes estatísticos de hipóteses      (reports/tables)
-  model  -> classificação + interpretação         (outputs/, reports/)
-  report -> relatório final em Markdown           (reports/relatorio.md)
-
-Uso:
-  python run_pipeline.py                 # todas as etapas, em ordem
-  python run_pipeline.py --etapa eda     # uma etapa específica
-  python run_pipeline.py --etapas load eda
-"""
 
 from __future__ import annotations
 

@@ -1,10 +1,3 @@
-"""Construção da base de análise (feature engineering).
-
-Gera:
-  * ``outputs/analysis_dataset.csv``  — pedidos ENTREGUES com avaliação (base de
-    modelagem/testes), uma linha por pedido;
-  * ``outputs/orders_status_dataset.csv`` — todos os pedidos (para EDA de status).
-"""
 
 from __future__ import annotations
 
@@ -18,9 +11,7 @@ from .data_loader import carregar_dados
 RAIO_TERRA_KM = 6371.0
 
 
-# ---------------------------------------------------------------- utilidades --
 def _haversine_km(lat1, lon1, lat2, lon2):
-    """Distância geodésica em km entre dois pontos (vetorizado)."""
     la1, lo1, la2, lo2 = map(np.radians, [lat1, lon1, lat2, lon2])
     dla, dlo = la2 - la1, lo2 - lo1
     a = np.sin(dla / 2) ** 2 + np.cos(la1) * np.cos(la2) * np.sin(dlo / 2) ** 2
@@ -28,13 +19,11 @@ def _haversine_km(lat1, lon1, lat2, lon2):
 
 
 def _agrupar_raras(s: pd.Series, min_n: int = 100, rotulo: str = "Outras categorias") -> pd.Series:
-    """Agrupa níveis com menos de ``min_n`` observações (estabilidade amostral)."""
     contagem = s.value_counts(dropna=False)
     validos = set(contagem[contagem >= min_n].index)
     return s.where(s.isin(validos), rotulo)
 
 
-# ------------------------------------------------------- construção da base --
 def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
     d = carregar_dados()
 
@@ -42,7 +31,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
     reviews, payments, products = d["reviews"], d["payments"], d["products"]
     sellers, geo, cat_tr = d["sellers"], d["geolocation"], d["category_translation"]
 
-    # ---- reviews: 1 review por pedido (a mais antiga) ----------------------
     reviews = reviews.dropna(subset=["order_id"]).copy()
     reviews["tem_comentario"] = (
         reviews["review_comment_title"].fillna("").str.strip().ne("")
@@ -60,7 +48,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
         ]
     )
 
-    # ---- itens -> agregações por pedido + produto principal ----------------
     cat_tr = cat_tr.rename(columns={"product_category_name_english": "categoria_en"})
     products = products.merge(
         cat_tr[["product_category_name", "categoria_en"]], on="product_category_name", how="left"
@@ -78,7 +65,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
         preco_total=("price", "sum"),
         frete_total=("freight_value", "sum"),
     )
-    # produto principal = item de maior preço
     principal = (
         items.loc[items.groupby("order_id")["price"].idxmax()]
         .set_index("order_id")[
@@ -94,7 +80,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
         )
     )
 
-    # ---- pagamentos --------------------------------------------------------
     pag_princ = (
         payments.sort_values("payment_value", ascending=False)
         .drop_duplicates("order_id")
@@ -106,13 +91,11 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
         valor_pago=("payment_value", "sum"),
     )
 
-    # ---- geolocalização: centróide por CEP ---------------------------------
     centroides = geo.groupby("geolocation_zip_code_prefix").agg(
         lat=("geolocation_lat", "median"),
         lng=("geolocation_lng", "median"),
     )
 
-    # ---- clientes ----------------------------------------------------------
     customers = customers.rename(
         columns={
             "customer_state": "uf_cliente",
@@ -121,7 +104,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
         }
     )
 
-    # ---- montagem do pedido ------------------------------------------------
     base = (
         orders.merge(customers, on="customer_id", how="left")
         .merge(agg_itens, on="order_id", how="left")
@@ -131,7 +113,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
         .merge(rev, on="order_id", how="left")
     )
 
-    # distância cliente <-> vendedor (do produto principal)
     cli = centroides.rename(columns={"lat": "lat_cli", "lng": "lng_cli"})
     vend = centroides.rename(columns={"lat": "lat_vend", "lng": "lng_vend"})
     base = base.merge(
@@ -145,7 +126,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
     )
     base = base.drop(columns=["lat_cli", "lng_cli", "lat_vend", "lng_vend"])
 
-    # ---- variáveis derivadas ----------------------------------------------
     base["atraso_dias"] = (
         (base["order_delivered_customer_date"] - base["order_estimated_delivery_date"])
         .dt.total_seconds() / 86400
@@ -183,7 +163,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
     base["dia_semana_compra"] = base["order_purchase_timestamp"].dt.day_name()
     base["hora_compra"] = base["order_purchase_timestamp"].dt.hour
 
-    # categoria principal agrupada (níveis raros -> "Outras categorias")
     base["categoria"] = base["categoria"].fillna("sem_categoria")
     base["categoria_grupo"] = _agrupar_raras(base["categoria"], min_n=100)
 
@@ -191,11 +170,8 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
     base[TARGET] = (base[SCORE_COL] <= NEGATIVE_MAX).astype("float")
     base.loc[base[SCORE_COL].isna(), TARGET] = np.nan
 
-    # ---- recortes ----------------------------------------------------------
-    # EDA de status: todos os pedidos
     status_df = base[["order_id", "order_status", SCORE_COL]].copy()
 
-    # Base de análise/modelagem: entregues, com data de entrega e com review
     analise = base[
         (base["order_status"] == "delivered")
         & base["order_delivered_customer_date"].notna()
@@ -210,7 +186,6 @@ def construir_bases() -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def salvar_bases() -> None:
-    """Executa a construção e persiste as bases em outputs/."""
     analise, status = construir_bases()
     analise.to_csv(ANALYSIS_CSV, index=False, date_format="%Y-%m-%d %H:%M:%S")
     status.to_csv(STATUS_CSV, index=False)
@@ -219,7 +194,6 @@ def salvar_bases() -> None:
 
 
 def carregar_analise() -> pd.DataFrame:
-    """Lê a base de análise persistida (usada pelas etapas seguintes)."""
     df = pd.read_csv(ANALYSIS_CSV, parse_dates=DATE_COLS)
     df["faixa_atraso"] = df["faixa_atraso"].astype("string")
     return df

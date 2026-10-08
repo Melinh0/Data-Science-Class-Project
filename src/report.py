@@ -1,9 +1,3 @@
-"""Etapa 4 — Geração do relatório (reports/relatorio.md).
-
-Monta o documento final combinando: tabelas/figuras das etapas anteriores,
-métricas do modelo (outputs/resultados_modelo.json) e números calculados
-dinamicamente a partir da base de análise.
-"""
 
 from __future__ import annotations
 
@@ -17,7 +11,7 @@ from .config import (
 from .features import carregar_analise
 
 try:
-    import tabulate  # noqa: F401
+    import tabulate
     _TEM_TABULATE = True
 except ImportError:
     _TEM_TABULATE = False
@@ -29,7 +23,6 @@ def _md(df: pd.DataFrame, max_rows: int | None = None, colunas: list | None = No
         d = d.head(max_rows)
     if _TEM_TABULATE:
         return d.to_markdown(index=False, floatfmt=".2f")
-    # fallback manual
     cab = "| " + " | ".join(str(c) for c in d.columns) + " |"
     sep = "|" + "|".join(["---"] * len(d.columns)) + "|"
     linhas = [
@@ -48,12 +41,10 @@ def _pct(x: float) -> str:
 
 
 def _inte(x) -> str:
-    """Inteiro com separador de milhar pt-BR (95.824)."""
     return f"{int(x):,}".replace(",", ".")
 
 
 def _n(x, casas: int = 1) -> str:
-    """Decimal com vírgula pt-BR (11,6)."""
     return f"{x:.{casas}f}".replace(".", ",")
 
 
@@ -62,7 +53,6 @@ def gerar_relatorio() -> None:
     status = pd.read_csv(STATUS_CSV)
     modelo = json.loads(MODEL_JSON.read_text())
 
-    # ------------------------------------------------- números dinâmicos --
     n = len(analise)
     taxa_neg = analise[TARGET].mean()
     media_nota = analise[SCORE_COL].mean()
@@ -88,10 +78,8 @@ def gerar_relatorio() -> None:
     cats_top = tab_cat[(tab_cat["n_pedidos"] >= 100)].head(5)
     ufs_top = tab_uf[tab_uf["n_pedidos"] >= 300].head(3)
 
-    # pedidos com 1 item vs. múltiplos itens
     p_neg_1_item = analise.loc[analise["n_itens"] == 1, TARGET].mean()
     p_neg_multi = analise.loc[analise["n_itens"] >= 2, TARGET].mean()
-    # maior efeito (|r| rank-bisserial) entre frete e distância
     _ef = tab_testes[tab_testes["comparacao"].isin(
         ["Frete total (R$)", "Participação do frete no pedido (%)",
          "Distância cliente-vendedor (km)"]
@@ -108,7 +96,6 @@ def gerar_relatorio() -> None:
     pior_mes = mensal["neg"].idxmax()
     melhor_mes = mensal["neg"].idxmin()
 
-    # coeficientes relevantes da logística (rótulos legíveis para exibição)
     tab_coef_exib = tab_coef.copy()
     tab_coef_exib["variavel"] = (
         tab_coef_exib["variavel"]
@@ -122,7 +109,6 @@ def gerar_relatorio() -> None:
     coef_prot = tab_coef_exib[tab_coef_exib["odds_ratio"] < 1].tail(6).iloc[::-1]
     imp_hgb = tab_imp[tab_imp["modelo"] == "gradient_boosting"].head(8)
 
-    # métricas do modelo
     met = modelo["metricas"]
     melhor = modelo["melhor_modelo"]
     m_lr = met["regressao_logistica"]
@@ -130,7 +116,6 @@ def gerar_relatorio() -> None:
 
     pct_sem_comentario_neg = 1 - coment_neg
 
-    # ---------------------------------------------------------- documento --
     partes: list[str] = []
     partes.append(f"""# Quais fatores estão associados à insatisfação dos clientes?
 
@@ -188,7 +173,6 @@ geolocalização e tradução de categorias.
 {analise['categoria_grupo'].nunique()} grupos de categoria · {analise['uf_cliente'].nunique()} UFs.
 """)
 
-    # ----------------------------------------------------------- EDA -----
     partes.append(f"""---
 
 ## 3. EDA: pedidos e avaliações
@@ -219,7 +203,6 @@ tende a *se manifestar* (sinal útil para monitoramento, embora observado após 
 {_fig('fig09_comentario_por_nota.png', '% de avaliações com comentário por nota')}
 """)
 
-    # ------------------------------------------------- relações operacionais ----
     partes.append(f"""---
 
 ## 4. Relação entre operação e nota
@@ -256,7 +239,6 @@ média e estados com taxas distintas:
 {_fig('fig08_insatisfacao_por_uf.png', 'Taxa de insatisfação por estado do cliente')}
 """)
 
-    # ------------------------------------------------------- testes ------
     partes.append(f"""---
 
 ## 5. Testes estatísticos de hipóteses
@@ -320,7 +302,6 @@ reportamos p-valor **e** tamanho de efeito. Hipóteses testadas (α = 0,05):
 _Tabelas completas:_ `reports/tables/tab05_testes_hipotese.csv` e `tab06_odds_ratio_atraso.csv`.
 """)
 
-    # ------------------------------------------------------- modelo ------
     partes.append(f"""---
 
 ## 6. Modelo: probabilidade de avaliação negativa
@@ -347,7 +328,6 @@ A calibração é razoável — a probabilidade prevista é utilizável como **s
 risco** de insatisfação por pedido.
 """)
 
-    # -------------------------------------- interpretação (foco) --------
     shap_ok = modelo.get("shap_disponivel", False)
     shap_secao = ""
     if shap_ok:
@@ -421,7 +401,6 @@ A permutação mede **quanto o AUC cai** quando a variável é embaralhada
    sazonalidade contribui de forma residual.
 """)
 
-    # ------------------------------------------ recomendações -----------
     partes.append(f"""---
 
 ## 8. Recomendações gerenciais (tradução das evidências)
@@ -468,7 +447,6 @@ negativos como *sinal de alerta secundário* (monitoramento de reputação), sab
 que o alerta mais barato é o **atraso**, que já é conhecido **antes** do cliente reclamar.
 """)
 
-    # --------------------------------------- limitações + reprodutibilidade ----
     partes.append(f"""---
 
 ## 9. Limitações e próximos passos

@@ -1,7 +1,3 @@
-"""Etapa 1 — Análise exploratória de pedidos e avaliações.
-
-Gera figuras em ``reports/figures/`` e tabelas-resumo em ``reports/tables/``.
-"""
 
 from __future__ import annotations
 
@@ -30,7 +26,6 @@ def _salvar_tabela(df: pd.DataFrame, nome: str) -> None:
     print(f"[eda] tabela -> {caminho.name}")
 
 
-# ------------------------------------------------------------------ figuras --
 def fig_status_pedidos(status: pd.DataFrame) -> None:
     contagem = status["order_status"].value_counts()
     fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -232,7 +227,6 @@ def fig_comentario(analise: pd.DataFrame) -> None:
     _salvar(fig, "fig09_comentario_por_nota.png")
 
 
-# ------------------------------------------------------------------ tabelas --
 def tabelas_resumo(analise: pd.DataFrame) -> None:
     resumo_notas = (
         analise[SCORE_COL].value_counts().reindex([1, 2, 3, 4, 5], fill_value=0)
@@ -292,7 +286,6 @@ def tabelas_resumo(analise: pd.DataFrame) -> None:
     _salvar_tabela(uf, "tab04_insatisfacao_por_uf.csv")
 
 
-# ------------------------------------------------------------------ execução --
 def executar_etapa_eda() -> None:
     if not ANALYSIS_CSV.exists():
         raise FileNotFoundError("Rode a etapa 'load' antes da EDA.")

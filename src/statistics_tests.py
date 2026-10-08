@@ -1,11 +1,3 @@
-"""Etapa 2 — Testes estatísticos de hipóteses.
-
-Todas as comparações são feitas entre insatisfeitos (nota 1-2) e satisfeitos
-(nota 3-5) na base de análise. Com N grande, tudo tende a ser "significativo":
-por isso o relatório também reporta **tamanho de efeito** e diferenças práticas.
-
-Saídas em ``reports/tables/``.
-"""
 
 from __future__ import annotations
 
@@ -19,14 +11,12 @@ from .features import carregar_analise
 ALPHA = 0.05
 
 
-# ------------------------------------------------------------- utilitários --
 def _mwu(col: str, rotulo: str) -> dict:
-    """Mann-Whitney U entre insatisfeitos e satisfeitos + tamanho de efeito."""
     dados = df_alvo[[col, TARGET]].dropna()
     x = dados.loc[dados[TARGET] == 1, col]
     y = dados.loc[dados[TARGET] == 0, col]
     stat, p = stats.mannwhitneyu(x, y, alternative="two-sided")
-    r_rb = 2 * stat / (len(x) * len(y)) - 1  # correlação rank-bisserial
+    r_rb = 2 * stat / (len(x) * len(y)) - 1
     return {
         "teste": "Mann-Whitney U",
         "comparacao": rotulo,
@@ -81,13 +71,12 @@ def _chi2(x_col: pd.Series, y_col: pd.Series, rotulo: str) -> dict:
 
 
 def _odds_ratio_atraso() -> dict:
-    """OR da insatisfação: atrasado vs. no prazo (intervalo de Woolf)."""
     late = df_alvo["atraso_dias"] > 0
     neg = df_alvo[TARGET] == 1
-    a = int((late & neg).sum())   # atrasado e insatisfeito
-    b = int((late & ~neg).sum())  # atrasado e satisfeito
-    c = int((~late & neg).sum())  # no prazo e insatisfeito
-    d = int((~late & ~neg).sum()) # no prazo e satisfeito
+    a = int((late & neg).sum())
+    b = int((late & ~neg).sum())
+    c = int((~late & neg).sum())
+    d = int((~late & ~neg).sum())
 
     odds_ratio = (a * d) / (b * c)
     se = np.sqrt(1 / a + 1 / b + 1 / c + 1 / d)
@@ -111,7 +100,6 @@ def _odds_ratio_atraso() -> dict:
 
 
 def _kruskal() -> dict:
-    """Nota entre faixas de atraso (4 grupos)."""
     grupos = [
         g.dropna().to_numpy()
         for _, g in df_alvo.groupby("faixa_atraso", observed=True)[SCORE_COL]
@@ -119,7 +107,7 @@ def _kruskal() -> dict:
     grupos = [g for g in grupos if len(g) > 0]
     h, p = stats.kruskal(*grupos)
     k, n = len(grupos), sum(len(g) for g in grupos)
-    eps2p = (h - k + 1) / (n - k)  # epsilon² (tamanho de efeito)
+    eps2p = (h - k + 1) / (n - k)
     return {
         "teste": "Kruskal-Wallis",
         "comparacao": "Nota x faixa de atraso",
@@ -135,8 +123,7 @@ def _kruskal() -> dict:
     }
 
 
-# ---------------------------------------------------------------- execução --
-df_alvo: pd.DataFrame = None  # definido em executar_etapa_testes
+df_alvo: pd.DataFrame = None
 
 
 def executar_etapa_testes() -> None:
@@ -147,7 +134,6 @@ def executar_etapa_testes() -> None:
 
     linhas: list[dict] = []
 
-    # 1) Diferenças de grandezas contínuas entre insatisfeitos x satisfeitos
     for col, rotulo in [
         ("atraso_dias", "Atraso (dias) — insatisfeitos x satisfeitos"),
         ("entrega_dias", "Tempo total de entrega (dias)"),
@@ -160,7 +146,6 @@ def executar_etapa_testes() -> None:
     ]:
         linhas.append(_mwu(col, rotulo))
 
-    # 2) Correlação de postos: nota x variáveis operacionais
     for col, rotulo in [
         ("atraso_dias", "atraso na entrega"),
         ("entrega_dias", "tempo total de entrega"),
@@ -170,7 +155,6 @@ def executar_etapa_testes() -> None:
     ]:
         linhas.append(_spearman(col, rotulo))
 
-    # 3) Associações categóricas (qui-quadrado)
     linhas.append(_chi2(df_alvo["prazo_cumprido"], df_alvo[TARGET],
                         "Cumprimento do prazo (sim/não) x insatisfação"))
     linhas.append(_chi2(df_alvo["categoria_grupo"], df_alvo[TARGET],
@@ -182,7 +166,6 @@ def executar_etapa_testes() -> None:
     linhas.append(_chi2(df_alvo["faixa_atraso"], df_alvo[TARGET],
                         "Faixa de atraso x insatisfação"))
 
-    # 4) Kruskal-Wallis: nota entre faixas de atraso
     linhas.append(_kruskal())
 
     resumo = pd.DataFrame(linhas)

@@ -1,13 +1,3 @@
-"""Etapa 3 — Modelo de classificação: probabilidade de avaliação negativa.
-
-Dois modelos comparados por validação cruzada:
-  * Regressão logística (interpretável -> odds ratios);
-  * Gradient boosting para árvores (HGB) com importância por permutação,
-    dependência parcial e (se disponível) SHAP.
-
-Variáveis de texto/comentário são EXCLUÍDAS por vazamento (o comentário faz
-parte da própria avaliação). Saídas em outputs/ e reports/.
-"""
 
 from __future__ import annotations
 
@@ -45,7 +35,6 @@ from .features import carregar_analise
 warnings.filterwarnings("ignore")
 
 
-# ------------------------------------------------------------ pré-processamento --
 def _preprocessador(escalar: bool) -> ColumnTransformer:
     num = Pipeline([
         ("imputer", SimpleImputer(strategy="median")),
@@ -80,7 +69,6 @@ def _modelos() -> dict[str, Pipeline]:
     }
 
 
-# ------------------------------------------------------------------- métricas --
 def _metricas(y_true, y_prob, limiar: float = 0.5) -> dict:
     y_pred = (y_prob >= limiar).astype(int)
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
@@ -97,9 +85,7 @@ def _metricas(y_true, y_prob, limiar: float = 0.5) -> dict:
     }
 
 
-# ----------------------------------------------------------------- interpretação --
 def _odds_ratios(pipe: Pipeline) -> pd.DataFrame:
-    """Extrai coeficientes da logística em escala original (odds ratios)."""
     pre = pipe.named_steps["pre"]
     clf = pipe.named_steps["clf"]
     nomes = pre.get_feature_names_out(NUMERIC_FEATURES + CATEGORICAL_FEATURES)
@@ -118,9 +104,7 @@ def _odds_ratios(pipe: Pipeline) -> pd.DataFrame:
     df = pd.DataFrame({
         "variavel": nomes,
         "coef_padrao": coefs,
-        # OR por 1 desvio-padrão (numéricas) ou vs. categoria de referência
         "odds_ratio": np.exp(coefs),
-        # OR por unidade de medida original (numéricas)
         "odds_ratio_por_unidade": np.exp(coefs / escala),
         "escala_por_unidade": escala,
     })
@@ -145,7 +129,6 @@ def _importancia_permutacao(pipes: dict, X_test, y_test) -> pd.DataFrame:
     return pd.concat(linhas, ignore_index=True)
 
 
-# ---------------------------------------------------------------------- figuras --
 def fig_curvas_roc_pr(y_test, probs: dict) -> None:
     fig, eixos = plt.subplots(1, 2, figsize=(11, 4.5))
     for nome, p in probs.items():
@@ -215,7 +198,6 @@ def fig_pdp(pipe: Pipeline, X_test, alvos: list[str]) -> None:
 
 
 def fig_shap(pipe: Pipeline, X_test, topo: int = 12) -> bool:
-    """SHAP (TreeExplainer) para o gradient boosting — opcional."""
     try:
         import shap
     except ImportError:
@@ -234,7 +216,6 @@ def fig_shap(pipe: Pipeline, X_test, topo: int = 12) -> bool:
         sv = explainer.shap_values(amostra)
         if isinstance(sv, list):
             sv = sv[1]
-        # bar (média |SHAP|)
         media = np.abs(sv).mean(axis=0)
         top = np.argsort(-media)[:topo]
         fig, ax = plt.subplots(figsize=(8, 5.5))
@@ -243,18 +224,16 @@ def fig_shap(pipe: Pipeline, X_test, topo: int = 12) -> bool:
         ax.set_xlabel("Média |SHAP|")
         fig.savefig(FIGURES / "fig14_shap_importancia.png")
         plt.close(fig)
-        # beeswarm
         shap.summary_plot(sv, amostra, max_display=topo, show=False, plot_size=(8, 5.5))
         plt.gcf().savefig(FIGURES / "fig15_shap_beeswarm.png")
         plt.close("all")
         print("[model] figuras -> fig14_shap_importancia.png, fig15_shap_beeswarm.png")
         return True
-    except Exception as exc:  # pragma: no cover
+    except Exception as exc:
         print(f"[model] SHAP indisponível ({type(exc).__name__}: {exc})")
         return False
 
 
-# ------------------------------------------------------------------ execução --
 def executar_etapa_modelo() -> None:
     if not ANALYSIS_CSV.exists():
         raise FileNotFoundError("Rode a etapa 'load' antes do modelo.")
@@ -297,12 +276,10 @@ def executar_etapa_modelo() -> None:
     melhor = max(resultados, key=lambda n: resultados[n]["metricas"]["roc_auc"])
     print(f"[model] melhor modelo por AUC: {melhor}")
 
-    # ---------------- figuras de avaliação ----------------
     fig_curvas_roc_pr(y_test, probs)
     fig_matriz_confusao(y_test, probs[melhor])
     fig_calibracao(y_test, probs)
 
-    # ---------------- interpretação ----------------
     pipe_lr = modelos["regressao_logistica"]
     pipe_hgb = modelos["gradient_boosting"]
 
@@ -317,7 +294,6 @@ def executar_etapa_modelo() -> None:
     tab_metricas = pd.DataFrame(
         [dict(modelo=n, **r["metricas"]) for n, r in resultados.items()]
     )
-    # matriz de confusao não cabe bem em CSV tabular -> string
     tab_metricas["matriz_confusao"] = tab_metricas["matriz_confusao"].apply(str)
     tab_metricas.to_csv(TABLES / "tab09_metricas_modelos.csv", index=False)
     print("[model] tabela -> tab09_metricas_modelos.csv")
@@ -325,7 +301,6 @@ def executar_etapa_modelo() -> None:
     fig_pdp(pipe_hgb, X_test, ["atraso_dias", "frete_ratio", "distancia_km"])
     shap_ok = fig_shap(pipe_hgb, X_test)
 
-    # ---------------- artefatos ----------------
     joblib.dump(modelos[melhor], MODEL_JOBLIB)
     print(f"[model] modelo salvo -> {MODEL_JOBLIB.name}")
 

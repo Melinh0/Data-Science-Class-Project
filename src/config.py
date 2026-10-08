@@ -1,12 +1,10 @@
-"""Configuração central do projeto: caminhos, constantes e estilo."""
 
 from pathlib import Path
 
 import matplotlib
 
-matplotlib.use("Agg")  # backend headless (pipeline de scripts)
+matplotlib.use("Agg")
 
-# ---------------------------------------------------------------- caminhos --
 ROOT = Path(__file__).resolve().parents[1]
 DATA_RAW = ROOT / "data" / "raw"
 OUTPUTS = ROOT / "outputs"
@@ -14,22 +12,21 @@ FIGURES = ROOT / "reports" / "figures"
 TABLES = ROOT / "reports" / "tables"
 REPORT_MD = ROOT / "reports" / "relatorio.md"
 
-ANALYSIS_CSV = OUTPUTS / "analysis_dataset.csv"       # pedidos entregues + review
-STATUS_CSV = OUTPUTS / "orders_status_dataset.csv"     # todos os pedidos (status)
-MODEL_JSON = OUTPUTS / "resultados_modelo.json"        # métricas/interpretação do modelo
-MODEL_JOBLIB = OUTPUTS / "modelo_insatisfacao.joblib"  # melhor modelo salvo
+ANALYSIS_CSV = OUTPUTS / "analysis_dataset.csv"
+STATUS_CSV = OUTPUTS / "orders_status_dataset.csv"
+MODEL_JSON = OUTPUTS / "resultados_modelo.json"
+MODEL_JOBLIB = OUTPUTS / "modelo_insatisfacao.joblib"
 
 for _d in (OUTPUTS, FIGURES, TABLES):
     _d.mkdir(parents=True, exist_ok=True)
 
-# ------------------------------------------------------------- constantes --
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
 CV_FOLDS = 5
 
 SCORE_COL = "review_score"
-TARGET = "insatisfeito"          # review_score <= NEGATIVE_MAX
-NEGATIVE_MAX = 2                 # notas 1-2 = insatisfeito; 3-5 = satisfeito
+TARGET = "insatisfeito"
+NEGATIVE_MAX = 2
 
 DATE_COLS = [
     "order_purchase_timestamp",
@@ -67,8 +64,7 @@ CATEGORICAL_FEATURES = [
     "dia_semana_compra",
 ]
 
-# ------------------------------------------------------------------ estilo --
-import seaborn as sns  # noqa: E402
+import seaborn as sns
 
 sns.set_theme(style="whitegrid", palette="viridis")
 mpl_rc = {
@@ -81,7 +77,7 @@ mpl_rc = {
     "axes.labelsize": 10,
     "legend.frameon": False,
 }
-import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.pyplot as plt
 
 plt.rcParams.update(mpl_rc)
 

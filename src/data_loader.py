@@ -1,7 +1,3 @@
-"""Carga dos 9 CSVs do dataset Olist Brazilian E-commerce.
-
-Prioriza os arquivos em ``data/raw``; se ausentes, baixa via ``kagglehub``.
-"""
 
 from __future__ import annotations
 
@@ -28,7 +24,6 @@ DATASET_KAGGLE = "olistbr/brazilian-ecommerce"
 
 
 def _baixar_kaggle() -> Path:
-    """Baixa o dataset do Kaggle (kagglehub) e copia para data/raw."""
     import kagglehub
 
     src = Path(kagglehub.dataset_download(DATASET_KAGGLE))
@@ -48,7 +43,6 @@ def _resolver_dir_dados() -> Path:
 
 
 def carregar_dados() -> dict[str, pd.DataFrame]:
-    """Carrega todos os CSVs com tipos/datas corretos."""
     base = _resolver_dir_dados()
     dfs: dict[str, pd.DataFrame] = {}
 
@@ -56,7 +50,6 @@ def carregar_dados() -> dict[str, pd.DataFrame]:
         caminho = base / arquivo
         dtype = None
         if chave in ("customers", "geolocation", "sellers"):
-            # CEPs têm zeros à esquerda -> manter como string
             col_zip = {
                 "customers": "customer_zip_code_prefix",
                 "geolocation": "geolocation_zip_code_prefix",
@@ -65,7 +58,7 @@ def carregar_dados() -> dict[str, pd.DataFrame]:
             dtype = {col_zip: "string"}
         kwargs: dict = {"dtype": dtype}
         if chave == "category_translation":
-            kwargs["encoding"] = "utf-8-sig"  # arquivo possui BOM
+            kwargs["encoding"] = "utf-8-sig"
 
         df = pd.read_csv(caminho, **kwargs)
 

@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""Gera os slides do projeto (apresentacao_olist.pptx + PDF).
-
-Uso:
-  python3 apresentacoes/gerar_slides.py
-"""
 
 from pathlib import Path
 
@@ -49,7 +44,6 @@ def texto(slide, l, t, w, h, corpo, tamanho=20, cor=CINZA, negrito=False,
 
 
 def bullet(slide, l, t, w, h, destaque, resto, tamanho=19):
-    """Bullet com trecho em negrito seguido de texto normal."""
     box = slide.shapes.add_textbox(Inches(l), Inches(t), Inches(w), Inches(h))
     tf = _tf(box)
     p = tf.paragraphs[0]
@@ -119,14 +113,12 @@ def cartao(slide, l, t, w, h, numero, rotulo, cor=AZUL):
     r2.font.name = FONTE
 
 
-# --------------------------------------------------------------- slides -----
 def montar() -> Presentation:
     prs = Presentation()
     prs.slide_width = Inches(13.333)
     prs.slide_height = Inches(7.5)
     branco = prs.slide_layouts[6]
 
-    # ---- 1. Capa ----------------------------------------------------------
     s = prs.slides.add_slide(branco)
     faixa = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0),
                                Inches(13.333), Inches(7.5))
@@ -146,7 +138,6 @@ def montar() -> Presentation:
           "Dataset: Kaggle — olistbr/brazilian-ecommerce", tamanho=15,
           cor=RGBColor(0x9E, 0xC5, 0xE8), italico=True)
 
-    # ---- 2. Base de dados -------------------------------------------------
     s = prs.slides.add_slide(branco)
     cabecalho(s, "Base de dados")
     bullet(s, 0.7, 1.45, 8.0, 1.0, "Olist Brazilian E-commerce (Kaggle): ",
@@ -166,7 +157,6 @@ def montar() -> Presentation:
            cor=VERMELHO)
     rodape(s, 2)
 
-    # ---- 3. Objetivo e pergunta -------------------------------------------
     s = prs.slides.add_slide(branco)
     cabecalho(s, "Objetivo e pergunta de pesquisa")
     texto(s, 0.7, 1.5, 11.9, 0.4, "OBJETIVO DO TRABALHO", tamanho=15,
