@@ -1,0 +1,43 @@
+variavel,decisao,criterio,teste,p_valor,significativo_005,medida_efeito,valor_efeito
+atraso_dias,mantida,evidência estatística + relevância operacional,Mann-Whitney U,0.0,sim,correlação rank-bisserial r,0.3133
+entrega_dias,mantida,evidência estatística + relevância operacional,Mann-Whitney U,0.0,sim,correlação rank-bisserial r,0.3709
+manuseio_dias,mantida,evidência estatística + relevância operacional,Mann-Whitney U,1.05e-197,sim,correlação rank-bisserial r,0.1675
+aprovacao_h,mantida,evidência estatística + relevância operacional,Mann-Whitney U,0.00019,sim,correlação rank-bisserial r,0.0208
+frete_total,mantida,evidência estatística + relevância operacional,Mann-Whitney U,7.18e-190,sim,correlação rank-bisserial r,0.1641
+preco_total,mantida,evidência estatística + relevância operacional,Mann-Whitney U,3.03e-55,sim,correlação rank-bisserial r,0.0874
+valor_pedido,mantida,evidência estatística + relevância operacional,Mann-Whitney U,4.2e-79,sim,correlação rank-bisserial r,0.1051
+frete_ratio,mantida,evidência estatística + relevância operacional,Mann-Whitney U,1.86e-05,sim,correlação rank-bisserial r,0.0239
+n_itens,mantida,evidência estatística + relevância operacional,Mann-Whitney U,0.0,sim,correlação rank-bisserial r,0.1256
+preco_unitario_medio,mantida,evidência estatística + relevância operacional,Mann-Whitney U,0.00127,sim,correlação rank-bisserial r,0.018
+distancia_km,mantida,evidência estatística + relevância operacional,Mann-Whitney U,3.84e-49,sim,correlação rank-bisserial r,0.0825
+n_parcelas,mantida,evidência estatística + relevância operacional,Mann-Whitney U,1.14e-23,sim,correlação rank-bisserial r,0.0526
+peso_g,mantida,evidência estatística + relevância operacional,Mann-Whitney U,3.59e-06,sim,correlação rank-bisserial r,0.0259
+n_fotos,mantida,evidência estatística + relevância operacional,Mann-Whitney U,3.05e-12,sim,correlação rank-bisserial r,-0.0366
+hora_compra,mantida,evidência estatística + relevância operacional,Mann-Whitney U,0.46,não,correlação rank-bisserial r,-0.0041
+categoria_grupo,mantida,evidência estatística + relevância operacional,Qui-quadrado de independência,4.66e-69,sim,V de Cramér,0.0702
+uf_cliente,mantida,evidência estatística + relevância operacional,Qui-quadrado de independência,5.31e-135,sim,V de Cramér,0.0867
+uf_vendedor,mantida,evidência estatística + relevância operacional,Qui-quadrado de independência,7.84e-17,sim,V de Cramér,0.0361
+pagamento_tipo,mantida,evidência estatística + relevância operacional,Qui-quadrado de independência,0.094,não,V de Cramér,0.0082
+mes_compra,mantida,evidência estatística + relevância operacional,Qui-quadrado de independência,7.24e-226,sim,V de Cramér,0.1088
+dia_semana_compra,mantida,evidência estatística + relevância operacional,Qui-quadrado de independência,0.0102,sim,V de Cramér,0.0132
+order_id,descartada,identificador,Identificador único do pedido (1:1 com a linha),,—,—,
+customer_id,descartada,identificador,Identificador de ligação pedido-cliente,,—,—,
+order_status,descartada,redundância,Pós-recorte: a base já contém apenas pedidos entregues,,—,—,
+order_purchase_timestamp,descartada,engenharia de atributos,"Data bruta -> hora_compra, mes_compra, dia_semana_compra",,—,—,
+order_approved_at,descartada,engenharia de atributos,Data bruta -> aprovacao_h,,—,—,
+order_delivered_carrier_date,descartada,engenharia de atributos,Data bruta -> manuseio_dias,,—,—,
+order_delivered_customer_date,descartada,engenharia de atributos,Data bruta -> entrega_dias,,—,—,
+order_estimated_delivery_date,descartada,engenharia de atributos,Data bruta -> atraso_dias (real - prometido),,—,—,
+customer_unique_id,descartada,identificador,Identificador de cliente (alta cardinalidade),,—,—,
+cep_cliente,descartada,identificador,Identificador geográfico fino (equivalente à cidade),,—,—,
+cidade_cliente,descartada,identificador,Identificador de cidade — redundante com uf_cliente + distancia_km,,—,—,
+categoria,descartada,redundância,Redundante com categoria_grupo (níveis raros agrupados),,—,—,
+seller_zip,descartada,identificador,Identificador geográfico do vendedor,,—,—,
+valor_pago,descartada,redundância,Redundante com valor_pedido/preco_total,,—,—,
+review_score,descartada,vazamento,VAZAMENTO: deriva diretamente do alvo,,—,—,
+review_creation_date,descartada,vazamento,VAZAMENTO: conhecida somente após a avaliação,,—,—,
+tem_comentario,descartada,vazamento,VAZAMENTO: manifestação pós-avaliação,,—,—,
+comentario_chars,descartada,vazamento,VAZAMENTO: conteúdo da avaliação (pós-resposta),,—,—,
+prazo_cumprido,descartada,redundância,Redundante com o sinal de atraso_dias (contínua mantida),,—,—,
+faixa_atraso,descartada,redundância,Versão agrupada de atraso_dias (usada apenas na EDA),,—,—,
+insatisfeito,alvo,resposta (review_score <= 2),—,,—,—,

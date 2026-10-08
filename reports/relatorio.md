@@ -391,13 +391,15 @@ que o alerta mais barato é o **atraso**, que já é conhecido **antes** do clie
 
 ```bash
 pip install -r requirements.txt
-python run_pipeline.py              # roda todas as etapas (load → eda → tests → model → report)
+python run_pipeline.py              # roda todas as etapas (load → eda → tests → model → etapas → report)
 python run_pipeline.py --etapa eda  # executa apenas uma etapa
 ```
 
 *Dados:* Kaggle — `olistbr/brazilian-ecommerce` (baixados automaticamente via
 `kagglehub` ou em `data/raw/`). *Seed:* 42.
 
-**Artefatos:** `reports/figures/` (15 figuras) · `reports/tables/` (9 tabelas) ·
+**Artefatos:** `reports/relatorio_etapas.md` (passo a passo por etapa) ·
+`reports/figures/` (16 figuras) ·
+`reports/tables/` (14 tabelas) ·
 `outputs/analysis_dataset.csv` · `outputs/resultados_modelo.json` ·
 `outputs/modelo_insatisfacao.joblib`.

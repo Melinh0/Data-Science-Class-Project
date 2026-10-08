@@ -24,13 +24,16 @@ Dataset: [olistbr/brazilian-ecommerce](https://www.kaggle.com/datasets/olistbr/b
 
 Relatório completo com figuras, tabelas e **recomendações gerenciais**: [`reports/relatorio.md`](reports/relatorio.md).
 
+Resultados **etapa por etapa** (análise de variáveis → seleção de atributos →
+pré-processamento → modelo): [`reports/relatorio_etapas.md`](reports/relatorio_etapas.md).
+
 ---
 
 ## Como executar
 
 ```bash
 pip install -r requirements.txt
-python run_pipeline.py                 # todas as etapas (load → eda → tests → model → report)
+python run_pipeline.py                 # todas as etapas (load → eda → tests → model → etapas → report)
 python run_pipeline.py --etapa eda     # uma etapa específica
 python run_pipeline.py --etapas load tests   # sequência específica
 ```
@@ -41,7 +44,7 @@ Se `data/raw/` estiver vazio, os dados são baixados automaticamente via `kaggle
 ## Estrutura
 
 ```
-├── run_pipeline.py            # orquestrador das 5 etapas
+├── run_pipeline.py            # orquestrador das 6 etapas
 ├── requirements.txt
 ├── data/raw/                  # 9 CSVs do dataset
 ├── src/
@@ -52,11 +55,13 @@ Se `data/raw/` estiver vazio, os dados são baixados automaticamente via `kaggle
 │   ├── statistics_tests.py    # etapa tests → Mann-Whitney, Spearman, qui-quadrado,
 │   │                          #               Kruskal-Wallis, odds ratio
 │   ├── model.py               # etapa model → LR + gradient boosting, SHAP, PDP
+│   ├── etapas.py              # etapa etapas → reports/relatorio_etapas.md (passo a passo)
 │   └── report.py              # etapa report → reports/relatorio.md
 ├── reports/
 │   ├── relatorio.md           # relatório final (gerado)
-│   ├── figures/               # 15 figuras (geradas)
-│   └── tables/                # 9 tabelas CSV (geradas)
+│   ├── relatorio_etapas.md    # resultados por etapa (gerado)
+│   ├── figures/               # 16 figuras (geradas)
+│   └── tables/                # 14 tabelas CSV (geradas)
 └── outputs/
     ├── analysis_dataset.csv   # base de análise (95.824 pedidos entregues c/ review)
     ├── resultados_modelo.json # métricas + interpretação

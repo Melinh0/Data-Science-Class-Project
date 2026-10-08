@@ -11,6 +11,7 @@ OUTPUTS = ROOT / "outputs"
 FIGURES = ROOT / "reports" / "figures"
 TABLES = ROOT / "reports" / "tables"
 REPORT_MD = ROOT / "reports" / "relatorio.md"
+ETAPAS_MD = ROOT / "reports" / "relatorio_etapas.md"
 
 ANALYSIS_CSV = OUTPUTS / "analysis_dataset.csv"
 STATUS_CSV = OUTPUTS / "orders_status_dataset.csv"

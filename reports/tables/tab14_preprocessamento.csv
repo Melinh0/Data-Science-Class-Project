@@ -1,0 +1,9 @@
+etapa,entrada,saida,detalhe
+1. Recorte dos pedidos,99.441,95.824,entregues (96.478) e com avaliação (−654 sem review)
+2. Seleção de atributos,42 colunas,21 features,20 colunas descartadas (Seção 3) + alvo
+3. Imputação de ausências,1.857 células,0 células,numéricas -> mediana; categóricas -> moda
+4. One-Hot Encoding,6 categóricas (136 níveis),130 colunas,min_frequency=30 agrupa níveis raros em 2 colunas 'infrequent'
+5. Padronização (z-score),15 numéricas,idem,StandardScaler aplicado apenas na regressão logística
+6. Divisão treino/teste,95.824,76.659 / 19.165,"80/20 estratificada — insatisfação 12,8% no treino, 12,8% no teste"
+7. Balanceamento das classes,"12,8% positivos","pesos 3,91 / 0,57",class_weight='balanced' (positivo recebe mais peso no custo)
+8. Matriz final de modelagem,—,76.659 × 145,treino (19.165 × 145 no teste) — 15 numéricas + 130 OHE

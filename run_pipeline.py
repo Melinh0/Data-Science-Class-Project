@@ -7,15 +7,18 @@ import sys
 import time
 
 from src.config import (
-    ANALYSIS_CSV, MODEL_JSON, REPORT_MD, STATUS_CSV, FIGURES, TABLES,
+    ANALYSIS_CSV, ETAPAS_MD, MODEL_JSON, REPORT_MD, STATUS_CSV, FIGURES, TABLES,
 )
 
-ETAPAS = ["load", "eda", "tests", "model", "report"]
+ETAPAS = ["load", "eda", "tests", "model", "etapas", "report"]
 
 PREREQUISITOS = {
     "eda": [ANALYSIS_CSV, STATUS_CSV],
     "tests": [ANALYSIS_CSV],
     "model": [ANALYSIS_CSV],
+    "etapas": [ANALYSIS_CSV, STATUS_CSV, MODEL_JSON,
+               TABLES / "tab05_testes_hipotese.csv",
+               TABLES / "tab09_metricas_modelos.csv"],
     "report": [ANALYSIS_CSV, MODEL_JSON],
 }
 
@@ -43,6 +46,9 @@ def executar(etapa: str) -> None:
     elif etapa == "model":
         from src.model import executar_etapa_modelo
         executar_etapa_modelo()
+    elif etapa == "etapas":
+        from src.etapas import gerar_relatorio_etapas
+        gerar_relatorio_etapas()
     elif etapa == "report":
         from src.report import gerar_relatorio
         gerar_relatorio()
@@ -64,6 +70,7 @@ def main() -> None:
 
     print(f"\n[pipeline] concluído em {time.time() - total:.1f}s")
     print(f"[pipeline] relatório: {REPORT_MD}")
+    print(f"[pipeline] etapas:    {ETAPAS_MD}")
     print(f"[pipeline] figuras:   {FIGURES}/  ({len(list(FIGURES.glob('*.png')))} arquivos)")
     print(f"[pipeline] tabelas:   {TABLES}/  ({len(list(TABLES.glob('*.csv')))} arquivos)")
 
