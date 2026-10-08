@@ -1,0 +1,20 @@
+teste,comparacao,estatistica,p_valor,significativo_005,medida_efeito,valor_efeito,n_inssatisf,n_satisfeit,mediana_inssatisf,mediana_satisfeit
+Mann-Whitney U,Atraso (dias) — insatisfeitos x satisfeitos,672843454.5,0.0,sim,correlação rank-bisserial (r),0.3133,12262,83562,-7.25,-12.19
+Mann-Whitney U,Tempo total de entrega (dias),702336842.0,0.0,sim,correlação rank-bisserial (r),0.3709,12262,83562,15.72,9.88
+Mann-Whitney U,Frete total (R$),596387722.0,7.18e-190,sim,correlação rank-bisserial (r),0.1641,12262,83562,18.52,16.94
+Mann-Whitney U,Participação do frete no pedido (%),524564383.5,1.86e-05,sim,correlação rank-bisserial (r),0.0239,12262,83562,0.19,0.18
+Mann-Whitney U,Valor do pedido (R$),566183785.0,4.2e-79,sim,correlação rank-bisserial (r),0.1051,12262,83562,118.47,103.13
+Mann-Whitney U,Nº de itens do pedido,576676684.5,0.0,sim,correlação rank-bisserial (r),0.1256,12262,83562,1.0,1.0
+Mann-Whitney U,Distância cliente-vendedor (km),549227570.0,3.84e-49,sim,correlação rank-bisserial (r),0.0825,12205,83144,481.0,426.48
+Mann-Whitney U,Tempo até a postagem (dias),598118157.5,1.05e-197,sim,correlação rank-bisserial (r),0.1675,12262,83561,2.92,2.14
+Spearman (correlação de postos),Nota x atraso na entrega,-0.1755,0.0,sim,rho de Spearman,-0.1755,12262,83562,,
+Spearman (correlação de postos),Nota x tempo total de entrega,-0.2345,0.0,sim,rho de Spearman,-0.2345,12262,83562,,
+Spearman (correlação de postos),Nota x participação do frete,-0.0306,2.46e-21,sim,rho de Spearman,-0.0306,12262,83562,,
+Spearman (correlação de postos),Nota x distância cliente-vendedor,-0.0649,1.26e-89,sim,rho de Spearman,-0.0649,12262,83562,,
+Spearman (correlação de postos),Nota x valor do pedido,-0.0395,1.77e-34,sim,rho de Spearman,-0.0395,12262,83562,,
+Qui-quadrado de independência,Cumprimento do prazo (sim/não) x insatisfação,12688.16,0.0,sim,V de Cramér,0.3639,12262,83562,,
+Qui-quadrado de independência,Categoria do produto x insatisfação,472.1,4.66e-69,sim,V de Cramér,0.0702,12262,83562,,
+Qui-quadrado de independência,UF do cliente x insatisfação,719.71,5.31e-135,sim,V de Cramér,0.0867,12262,83562,,
+Qui-quadrado de independência,Forma de pagamento x insatisfação,6.39,0.094,não,V de Cramér,0.0082,12262,83562,,
+Qui-quadrado de independência,Faixa de atraso x insatisfação,15697.83,0.0,sim,V de Cramér,0.4047,12262,83562,,
+Kruskal-Wallis,Nota x faixa de atraso,9652.31,0.0,sim,epsilon²,0.1007,12262,83562,,

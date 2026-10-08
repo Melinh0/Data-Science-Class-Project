@@ -1,0 +1,3 @@
+modelo,roc_auc,pr_auc,brier,precisao,recall,f1,acuracia,matriz_confusao,limiar,cv_roc_auc_mean,cv_roc_auc_std,cv_pr_auc_mean
+regressao_logistica,0.7462,0.3963,0.1908,0.2845,0.6015,0.3863,0.7554,"[[13003, 3710], [977, 1475]]",0.5,0.7412,0.0039,0.3881
+gradient_boosting,0.7669,0.4787,0.1684,0.3711,0.562,0.447,0.8221,"[[14378, 2335], [1074, 1378]]",0.5,0.7589,0.0052,0.4703

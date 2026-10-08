@@ -1,0 +1,16 @@
+# --------------------------------------------------------------- dados ----
+# Baixados automaticamente via kagglehub (etapa load)
+data/raw/
+
+# Bases intermediárias grandes geradas pela etapa "load"
+outputs/analysis_dataset.csv
+outputs/orders_status_dataset.csv
+
+# -------------------------------------------------------------- python ----
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# -------------------------------------------------------------- sistema ----
+.DS_Store
+*.swp

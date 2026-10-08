@@ -1,0 +1,391 @@
+{
+  "melhor_modelo": "gradient_boosting",
+  "n_amostras": 95824,
+  "n_features_brutas": 21,
+  "taxa_positivos_pct": 12.8,
+  "metricas": {
+    "regressao_logistica": {
+      "roc_auc": 0.7462,
+      "pr_auc": 0.3963,
+      "brier": 0.1908,
+      "precisao": 0.2845,
+      "recall": 0.6015,
+      "f1": 0.3863,
+      "acuracia": 0.7554,
+      "matriz_confusao": [
+        [
+          13003,
+          3710
+        ],
+        [
+          977,
+          1475
+        ]
+      ],
+      "limiar": 0.5,
+      "cv_roc_auc_mean": 0.7412,
+      "cv_roc_auc_std": 0.0039,
+      "cv_pr_auc_mean": 0.3881
+    },
+    "gradient_boosting": {
+      "roc_auc": 0.7669,
+      "pr_auc": 0.4787,
+      "brier": 0.1684,
+      "precisao": 0.3711,
+      "recall": 0.562,
+      "f1": 0.447,
+      "acuracia": 0.8221,
+      "matriz_confusao": [
+        [
+          14378,
+          2335
+        ],
+        [
+          1074,
+          1378
+        ]
+      ],
+      "limiar": 0.5,
+      "cv_roc_auc_mean": 0.7589,
+      "cv_roc_auc_std": 0.0052,
+      "cv_pr_auc_mean": 0.4703
+    }
+  },
+  "top_odds_ratio_aumentam_risco": [
+    {
+      "variavel": "categoria_grupo_fashion_male_clothing",
+      "coef_padrao": 0.962020779406428,
+      "odds_ratio": 2.616979471961996,
+      "odds_ratio_por_unidade": 2.616979471961996,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "entrega_dias",
+      "coef_padrao": 0.743734570702446,
+      "odds_ratio": 2.103777568098393,
+      "odds_ratio_por_unidade": 1.0818845172625453,
+      "escala_por_unidade": 9.449715081970822,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_audio",
+      "coef_padrao": 0.7213885062414763,
+      "odds_ratio": 2.0572877853183162,
+      "odds_ratio_por_unidade": 2.0572877853183162,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_vendedor_infrequent_sklearn",
+      "coef_padrao": 0.5523731661727187,
+      "odds_ratio": 1.7373711999305719,
+      "odds_ratio_por_unidade": 1.7373711999305719,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_construction_tools_safety",
+      "coef_padrao": 0.5236951392928231,
+      "odds_ratio": 1.688254473564557,
+      "odds_ratio_por_unidade": 1.688254473564557,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_art",
+      "coef_padrao": 0.5236948012399937,
+      "odds_ratio": 1.688253902845452,
+      "odds_ratio_por_unidade": 1.688253902845452,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_sem_categoria",
+      "coef_padrao": 0.44534834082076286,
+      "odds_ratio": 1.5610338729552455,
+      "odds_ratio_por_unidade": 1.5610338729552455,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_home_confort",
+      "coef_padrao": 0.44444182656208925,
+      "odds_ratio": 1.5596194147012898,
+      "odds_ratio_por_unidade": 1.5596194147012898,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "n_itens",
+      "coef_padrao": 0.42393389943037807,
+      "odds_ratio": 1.5279605913804857,
+      "odds_ratio_por_unidade": 2.217886787343131,
+      "escala_por_unidade": 0.5322093037518835,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_vendedor_DF",
+      "coef_padrao": 0.41122500637190473,
+      "odds_ratio": 1.508664777558701,
+      "odds_ratio_por_unidade": 1.508664777558701,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "mes_compra_2017-01",
+      "coef_padrao": 0.38570505525225574,
+      "odds_ratio": 1.470650846097905,
+      "odds_ratio_por_unidade": 1.470650846097905,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_fixed_telephony",
+      "coef_padrao": 0.3402224885839584,
+      "odds_ratio": 1.4052602101394078,
+      "odds_ratio_por_unidade": 1.4052602101394078,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_vendedor_ES",
+      "coef_padrao": 0.33664752266775366,
+      "odds_ratio": 1.4002454219740523,
+      "odds_ratio_por_unidade": 1.4002454219740523,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_cliente_RJ",
+      "coef_padrao": 0.31358299511673166,
+      "odds_ratio": 1.3683190218462584,
+      "odds_ratio_por_unidade": 1.3683190218462584,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_telephony",
+      "coef_padrao": 0.290379750617103,
+      "odds_ratio": 1.3369350935644213,
+      "odds_ratio_por_unidade": 1.3369350935644213,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": true
+    }
+  ],
+  "top_odds_ratio_protetores": [
+    {
+      "variavel": "uf_vendedor_MT",
+      "coef_padrao": -0.23181391031488566,
+      "odds_ratio": 0.7930936961315469,
+      "odds_ratio_por_unidade": 0.7930936961315469,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_fashion_shoes",
+      "coef_padrao": -0.2523458804043645,
+      "odds_ratio": 0.7769759508314515,
+      "odds_ratio_por_unidade": 0.7769759508314515,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_vendedor_CE",
+      "coef_padrao": -0.28747117791711563,
+      "odds_ratio": 0.7501581875808608,
+      "odds_ratio_por_unidade": 0.7501581875808608,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_cliente_TO",
+      "coef_padrao": -0.30367849420147164,
+      "odds_ratio": 0.7380981311366046,
+      "odds_ratio_por_unidade": 0.7380981311366046,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_vendedor_MS",
+      "coef_padrao": -0.31405711772501455,
+      "odds_ratio": 0.7304773037660691,
+      "odds_ratio_por_unidade": 0.7304773037660691,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_garden_tools",
+      "coef_padrao": -0.3272506050536261,
+      "odds_ratio": 0.7209030584376981,
+      "odds_ratio_por_unidade": 0.7209030584376981,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_vendedor_RN",
+      "coef_padrao": -0.33208753041189276,
+      "odds_ratio": 0.7174245236420066,
+      "odds_ratio_por_unidade": 0.7174245236420066,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_stationery",
+      "coef_padrao": -0.3858290552956966,
+      "odds_ratio": 0.679886738784552,
+      "odds_ratio_por_unidade": 0.679886738784552,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_christmas_supplies",
+      "coef_padrao": -0.4071695334066697,
+      "odds_ratio": 0.6655313509396005,
+      "odds_ratio_por_unidade": 0.6655313509396005,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_vendedor_GO",
+      "coef_padrao": -0.4250803030894637,
+      "odds_ratio": 0.6537172875041923,
+      "odds_ratio_por_unidade": 0.6537172875041923,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_cliente_RR",
+      "coef_padrao": -0.5040192381911158,
+      "odds_ratio": 0.6040977609958946,
+      "odds_ratio_por_unidade": 0.6040977609958946,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_construction_tools_lights",
+      "coef_padrao": -0.5715876779098968,
+      "odds_ratio": 0.5646282788419303,
+      "odds_ratio_por_unidade": 0.5646282788419303,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_books_general_interest",
+      "coef_padrao": -0.7026180359683414,
+      "odds_ratio": 0.4952869259462856,
+      "odds_ratio_por_unidade": 0.4952869259462856,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_cliente_AP",
+      "coef_padrao": -0.7279290928304447,
+      "odds_ratio": 0.4829080129576239,
+      "odds_ratio_por_unidade": 0.4829080129576239,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_food_drink",
+      "coef_padrao": -2.090181187540119,
+      "odds_ratio": 0.12366472727970693,
+      "odds_ratio_por_unidade": 0.12366472727970693,
+      "escala_por_unidade": 1.0,
+      "aumenta_risco": false
+    }
+  ],
+  "top_importancia_permutacao": [
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "n_itens",
+      "importancia_media": 0.05733999204885785,
+      "importancia_std": 0.002115284033135905
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "atraso_dias",
+      "importancia_media": 0.04519600600054523,
+      "importancia_std": 0.0015282240902771155
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "entrega_dias",
+      "importancia_media": 0.03406812218639034,
+      "importancia_std": 0.0031593418507426924
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "categoria_grupo",
+      "importancia_media": 0.014286591188404908,
+      "importancia_std": 0.0011352345405523383
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "manuseio_dias",
+      "importancia_media": 0.007356951427071878,
+      "importancia_std": 0.001801020554444564
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "uf_vendedor",
+      "importancia_media": 0.002999688191460703,
+      "importancia_std": 0.0011122275523478063
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "n_fotos",
+      "importancia_media": 0.0027348168665335404,
+      "importancia_std": 0.0003742726307986339
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "distancia_km",
+      "importancia_media": 0.0025434760371062294,
+      "importancia_std": 0.0005190420277791774
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "peso_g",
+      "importancia_media": 0.0022220616571737685,
+      "importancia_std": 0.0007185894321532312
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "frete_total",
+      "importancia_media": 0.0018414456261836576,
+      "importancia_std": 0.0005892539663404202
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "valor_pedido",
+      "importancia_media": 0.0016938477915570903,
+      "importancia_std": 0.00041637057307319876
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "mes_compra",
+      "importancia_media": 0.0011267042222946166,
+      "importancia_std": 0.00043542110685444935
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "preco_unitario_medio",
+      "importancia_media": 0.0007517543317668407,
+      "importancia_std": 0.00021665741205114934
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "preco_total",
+      "importancia_media": 0.0007452951268556607,
+      "importancia_std": 0.0003693185789106352
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "uf_cliente",
+      "importancia_media": 0.0005240862701851757,
+      "importancia_std": 0.0008715526785478494
+    }
+  ],
+  "shap_disponivel": true
+}
