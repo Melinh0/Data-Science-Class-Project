@@ -1,0 +1,37 @@
+{
+  "n_numericas": 13,
+  "rank_efetivo": 13,
+  "k_kaiser": 5,
+  "k_paralela": 5,
+  "k_90pct": 10,
+  "k_cv_1se": 13,
+  "k_escolhido": 13,
+  "variancia_k_escolhido": 0.9999999999999999,
+  "variancia_k_90": 0.9332778641669847,
+  "auc_cv_sem_pca": 0.7341113659645456,
+  "auc_cv_sem_pca_dp": 0.005472935367433238,
+  "auc_cv_k_escolhido": 0.7341007482150997,
+  "auc_cv_k_90": 0.727916693714251,
+  "rotulos_componentes": {
+    "PC1": "Frete total (R$) (+0.51), Preço total dos itens (R$) (+0.44), Peso do produto (g) (+0.41)",
+    "PC2": "Tempo de entrega (dias) (+0.55), Atraso na entrega (dias) (+0.45), Tempo de postagem (dias) (+0.34)",
+    "PC3": "Frete / valor do pedido (+0.58), Frete total (R$) (+0.37), Atraso na entrega (dias) (-0.37)",
+    "PC4": "Aprovação do pagamento (horas) (+0.60), Distância cliente-vendedor (km) (-0.46), Nº de parcelas (-0.37)",
+    "PC5": "Nº de fotos do anúncio (+0.63), Nº de itens no pedido (-0.42), Aprovação do pagamento (horas) (+0.37)"
+  },
+  "variancia_por_componente": {
+    "PC1": 0.1781173939746982,
+    "PC2": 0.14407617532882522,
+    "PC3": 0.11529349089298906,
+    "PC4": 0.09004521457467769,
+    "PC5": 0.08070585265712481
+  },
+  "auc_componentes_vs_alvo": {
+    "PC1": 0.6655430806530072,
+    "PC2": 0.6391953679469526,
+    "PC3": 0.44717430549160586,
+    "PC4": 0.4887262297860001,
+    "PC5": 0.40398330138935457
+  },
+  "componente_mais_separadora": "PC1"
+}

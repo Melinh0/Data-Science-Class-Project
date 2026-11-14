@@ -1,0 +1,52 @@
+{
+  "n_total": 99441,
+  "n_delivered": 96478,
+  "n_base": 95824,
+  "n_colunas_base": 42,
+  "n_features_candidatas": 21,
+  "n_features_modelo": 19,
+  "redundantes_removidas": {
+    "valor_pedido": "identidade exata: preco_total + frete_total",
+    "preco_unitario_medio": "derivada: preco_total / n_itens (r > 0,9 com preco_total)"
+  },
+  "n_invalidos_tratados": {
+    "manuseio_dias: postagem anterior à compra": 134,
+    "manuseio_dias: postagem posterior à entrega ao cliente": 23,
+    "n_parcelas: pagamento com 0 parcelas (mínimo possível = 1)": 2,
+    "peso_g: peso do produto ≤ 0 g": 6,
+    "distancia_km: distância > 4500 km (fora do território brasileiro)": 4
+  },
+  "n_invalidos_total": 169,
+  "ausentes_antes_regras": 1857,
+  "ausentes_depois_regras": 2026,
+  "n_train": 76659,
+  "n_test": 19165,
+  "taxa_treino": 0.12796931867099753,
+  "taxa_teste": 0.12794156013566396,
+  "n_dim_saida": 142,
+  "n_dim_ohe": 129,
+  "n_dim_num": 13,
+  "vif_max_antes": 1000000.0,
+  "vif_max_depois": 2.746096846986765,
+  "pares_correlacionados": [
+    {
+      "variavel_1": "preco_total",
+      "variavel_2": "valor_pedido",
+      "r": 0.9959
+    },
+    {
+      "variavel_1": "preco_total",
+      "variavel_2": "preco_unitario_medio",
+      "r": 0.9324
+    },
+    {
+      "variavel_1": "valor_pedido",
+      "variavel_2": "preco_unitario_medio",
+      "r": 0.9203
+    }
+  ],
+  "identidades": {
+    "valor_pedido = preco_total + frete_total": 4.405364961712621e-13,
+    "preco_unitario_medio = preco_total / n_itens": 0.005000000000023874
+  }
+}

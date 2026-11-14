@@ -1,0 +1,6 @@
+modelo,familia,n_configuracoes,hiperparametros_escolhidos,no_limite_da_grade,auc_cv_medio,auc_cv_dp,tempo_busca_s
+Regressão logística,linear (baseline),4,"{""C"": ""0.1""}",—,0.7343571464135401,0.003544035718743353,34.5
+Árvore de decisão,árvore única,56,"{""criterion"": ""gini"", ""max_depth"": ""10"", ""min_samples_leaf"": ""200""}","max_depth, min_samples_leaf",0.7432528130249965,0.007692818549229847,147.8
+KNN,baseado em instâncias,20,"{""n_neighbors"": ""301"", ""weights"": ""distance"", ""pre"": ""selecionadas (11 variáveis)""}",n_neighbors,0.7474794625588128,0.007641794403116729,319.9
+Gradient boosting,ensemble de árvores (boosting),12,"{""learning_rate"": ""0.03"", ""max_leaf_nodes"": ""31"", ""min_samples_leaf"": ""20""}",learning_rate,0.7610345143869762,0.0062398250750958905,149.7
+MLP,rede neural,9,"{""alpha"": ""0.001"", ""hidden_layer_sizes"": ""(128,64)""}",—,0.7520873592176675,0.006356730430900067,226.0

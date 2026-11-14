@@ -1,0 +1,6 @@
+modelo,comparado_com,delta_auc_medio,ic95_inf,ic95_sup,diferenca_significativa
+Regressão logística,Gradient boosting,-0.025211438482970763,-0.03150448066356256,-0.018717361785444298,True
+Árvore de decisão,Gradient boosting,-0.017433816821578605,-0.023371357243498876,-0.012305458779878214,True
+KNN,Gradient boosting,-0.00936009368390079,-0.0158201059656813,-0.002726329261067066,True
+Gradient boosting,Gradient boosting,0.0,0.0,0.0,False
+MLP,Gradient boosting,-0.006192690557896757,-0.012580740006677527,-0.0005731606186812784,True

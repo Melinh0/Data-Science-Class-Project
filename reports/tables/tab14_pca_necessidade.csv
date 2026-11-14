@@ -1,0 +1,12 @@
+metricas,valor
+n_features_numericas,13.0
+rank_efetivo_autovalor>1e-8,13.0
+k_criterio_kaiser,5.0
+k_analise_paralela,5.0
+k_90pct_variancia_(apenas_referencia),10.0
+k_validacao_cruzada_1se,13.0
+k_escolhido,13.0
+variancia_acumulada_k_escolhido,0.9999999999999999
+auc_cv_sem_pca,0.7341113659645456
+auc_cv_k_escolhido,0.7341007482150997
+auc_cv_k_90pct,0.727916693714251
