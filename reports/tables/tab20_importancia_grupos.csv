@@ -1,0 +1,13 @@
+modelo,grupo,features,queda_auc_media,queda_auc_dp
+gradient_boosting,Prazo e tempo de entrega,"atraso_dias, entrega_dias, manuseio_dias",0.1953083966540392,0.006219888800281618
+gradient_boosting,"Pedido (itens, preço, frete)","n_itens, preco_total, frete_total, frete_ratio",0.06222182105362113,0.00316247018264188
+gradient_boosting,Produto,"categoria_grupo, peso_g, n_fotos",0.01569414271392424,0.0018962656195787276
+gradient_boosting,Geografia,"uf_cliente, uf_vendedor, distancia_km",0.006389245645881081,0.0013247363120323207
+gradient_boosting,Calendário,"mes_compra, dia_semana_compra, hora_compra",0.00033548090305700605,0.0007753525727694459
+gradient_boosting,Pagamento e aprovação,"pagamento_tipo, n_parcelas, aprovacao_h",-8.908187929225208e-05,0.0006128605308566212
+regressao_logistica,Prazo e tempo de entrega,"atraso_dias, entrega_dias, manuseio_dias",0.18859127254291802,0.005825671391166691
+regressao_logistica,"Pedido (itens, preço, frete)","n_itens, preco_total, frete_total, frete_ratio",0.04293245121140722,0.002150900159166625
+regressao_logistica,Geografia,"uf_cliente, uf_vendedor, distancia_km",0.00924665075462162,0.0008853158801275971
+regressao_logistica,Produto,"categoria_grupo, peso_g, n_fotos",0.009175333518983664,0.0014199005409762844
+regressao_logistica,Pagamento e aprovação,"pagamento_tipo, n_parcelas, aprovacao_h",0.0021777744981513305,0.0007908769788403829
+regressao_logistica,Calendário,"mes_compra, dia_semana_compra, hora_compra",0.0012557504493137417,0.0007580894670895702

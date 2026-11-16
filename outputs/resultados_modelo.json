@@ -1,0 +1,640 @@
+{
+  "melhor_modelo": "gradient_boosting",
+  "n_amostras": 95824,
+  "n_features_brutas": 19,
+  "taxa_positivos_pct": 12.8,
+  "criterio_melhor_modelo": "AUC médio de validação cruzada no treino",
+  "metricas": {
+    "regressao_logistica": {
+      "roc_auc": 0.7404,
+      "pr_auc": 0.4082,
+      "brier": 0.0935,
+      "brier_baseline": 0.1116,
+      "brier_skill": 0.1616,
+      "ece": 0.0121,
+      "prob_media_prevista": 0.1298,
+      "taxa_observada": 0.1279,
+      "precisao": 0.4834,
+      "recall": 0.3862,
+      "f1": 0.4294,
+      "acuracia": 0.8687,
+      "matriz_confusao": [
+        [
+          15701,
+          1012
+        ],
+        [
+          1505,
+          947
+        ]
+      ],
+      "limiar": 0.2425,
+      "cv_roc_auc_mean": 0.7339,
+      "cv_roc_auc_std": 0.0035,
+      "cv_pr_auc_mean": 0.4001,
+      "cv_brier_skill": 0.1562
+    },
+    "gradient_boosting": {
+      "roc_auc": 0.7649,
+      "pr_auc": 0.4803,
+      "brier": 0.0864,
+      "brier_baseline": 0.1116,
+      "brier_skill": 0.2255,
+      "ece": 0.0041,
+      "prob_media_prevista": 0.1297,
+      "taxa_observada": 0.1279,
+      "precisao": 0.5016,
+      "recall": 0.4531,
+      "f1": 0.4761,
+      "acuracia": 0.8724,
+      "matriz_confusao": [
+        [
+          15609,
+          1104
+        ],
+        [
+          1341,
+          1111
+        ]
+      ],
+      "limiar": 0.2294,
+      "cv_roc_auc_mean": 0.7602,
+      "cv_roc_auc_std": 0.0055,
+      "cv_pr_auc_mean": 0.4723,
+      "cv_brier_skill": 0.2218
+    }
+  },
+  "validacoes_adicionais": {
+    "temporal": {
+      "roc_auc": 0.6942,
+      "pr_auc": 0.303,
+      "brier": 0.0777,
+      "brier_baseline": 0.0873,
+      "brier_skill": 0.1108,
+      "ece": 0.0062,
+      "prob_media_prevista": 0.0995,
+      "taxa_observada": 0.0967,
+      "precisao": 0.3776,
+      "recall": 0.3006,
+      "f1": 0.3347,
+      "acuracia": 0.8845,
+      "matriz_confusao": [
+        [
+          16394,
+          918
+        ],
+        [
+          1296,
+          557
+        ]
+      ],
+      "limiar": 0.2294,
+      "n_treino": 76659,
+      "n_teste": 19165
+    },
+    "pre_entrega": {
+      "roc_auc": 0.692,
+      "pr_auc": 0.2817,
+      "brier": 0.1036,
+      "brier_baseline": 0.1116,
+      "brier_skill": 0.0718,
+      "ece": 0.0084,
+      "prob_media_prevista": 0.1278,
+      "taxa_observada": 0.1279,
+      "precisao": 0.3324,
+      "recall": 0.3006,
+      "f1": 0.3157,
+      "acuracia": 0.8333,
+      "matriz_confusao": [
+        [
+          15233,
+          1480
+        ],
+        [
+          1715,
+          737
+        ]
+      ],
+      "limiar": 0.2294,
+      "features_excluidas": [
+        "atraso_dias",
+        "entrega_dias"
+      ]
+    }
+  },
+  "top_odds_ratio_aumentam_risco": [
+    {
+      "variavel": "entrega_dias",
+      "coef_padrao": 0.6590508932474192,
+      "odds_ratio": 1.9329568810909565,
+      "odds_ratio_por_unidade": 1.0722325156082755,
+      "escala_por_unidade": 9.449715081970824,
+      "n_treino": NaN,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_sem_categoria",
+      "coef_padrao": 0.41864306322723055,
+      "odds_ratio": 1.5198977505602311,
+      "odds_ratio_por_unidade": 1.5198977505602311,
+      "escala_por_unidade": 1.0,
+      "n_treino": 1127.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_home_comfort",
+      "coef_padrao": 0.4020337690948199,
+      "odds_ratio": 1.4948618119539887,
+      "odds_ratio_por_unidade": 1.4948618119539887,
+      "escala_por_unidade": 1.0,
+      "n_treino": 313.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "n_itens",
+      "coef_padrao": 0.31040344280403703,
+      "odds_ratio": 1.3639752891579329,
+      "odds_ratio_por_unidade": 1.791826797594528,
+      "escala_por_unidade": 0.5322093037518835,
+      "n_treino": NaN,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "mes_compra_2017-01",
+      "coef_padrao": 0.2949373476652036,
+      "odds_ratio": 1.3430422113200204,
+      "odds_ratio_por_unidade": 1.3430422113200204,
+      "escala_por_unidade": 1.0,
+      "n_treino": 571.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_cliente_RJ",
+      "coef_padrao": 0.285758974254802,
+      "odds_ratio": 1.3307716663620808,
+      "odds_ratio_por_unidade": 1.3307716663620808,
+      "escala_por_unidade": 1.0,
+      "n_treino": 9734.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "atraso_dias",
+      "coef_padrao": 0.25081659314375065,
+      "odds_ratio": 1.2850743712656794,
+      "odds_ratio_por_unidade": 1.0251434379522022,
+      "escala_por_unidade": 10.100318785886817,
+      "n_treino": NaN,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_vendedor_DF",
+      "coef_padrao": 0.24958887253926187,
+      "odds_ratio": 1.28349762708049,
+      "odds_ratio_por_unidade": 1.28349762708049,
+      "escala_por_unidade": 1.0,
+      "n_treino": 644.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_telephony",
+      "coef_padrao": 0.19311539033663197,
+      "odds_ratio": 1.213022756547994,
+      "odds_ratio_por_unidade": 1.213022756547994,
+      "escala_por_unidade": 1.0,
+      "n_treino": 3257.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_computers_accessories",
+      "coef_padrao": 0.17934155895007445,
+      "odds_ratio": 1.1964293255308673,
+      "odds_ratio_por_unidade": 1.1964293255308673,
+      "escala_por_unidade": 1.0,
+      "n_treino": 5162.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_bed_bath_table",
+      "coef_padrao": 0.17614156472623735,
+      "odds_ratio": 1.1926068777671315,
+      "odds_ratio_por_unidade": 1.1926068777671315,
+      "escala_por_unidade": 1.0,
+      "n_treino": 7280.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_cliente_MA",
+      "coef_padrao": 0.15349197630719633,
+      "odds_ratio": 1.1658984322737211,
+      "odds_ratio_por_unidade": 1.1658984322737211,
+      "escala_por_unidade": 1.0,
+      "n_treino": 574.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_baby",
+      "coef_padrao": 0.14580526968947527,
+      "odds_ratio": 1.1569708688167133,
+      "odds_ratio_por_unidade": 1.1569708688167133,
+      "escala_por_unidade": 1.0,
+      "n_treino": 2176.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "categoria_grupo_watches_gifts",
+      "coef_padrao": 0.14354344265521055,
+      "odds_ratio": 1.1543569580491535,
+      "odds_ratio_por_unidade": 1.1543569580491535,
+      "escala_por_unidade": 1.0,
+      "n_treino": 4353.0,
+      "aumenta_risco": true
+    },
+    {
+      "variavel": "uf_cliente_DF",
+      "coef_padrao": 0.1291113354404536,
+      "odds_ratio": 1.1378167964482315,
+      "odds_ratio_por_unidade": 1.1378167964482315,
+      "escala_por_unidade": 1.0,
+      "n_treino": 1653.0,
+      "aumenta_risco": true
+    }
+  ],
+  "top_odds_ratio_protetores": [
+    {
+      "variavel": "dia_semana_compra_Wednesday",
+      "coef_padrao": -0.22552955495342286,
+      "odds_ratio": 0.7980934724839158,
+      "odds_ratio_por_unidade": 0.7980934724839158,
+      "escala_por_unidade": 1.0,
+      "n_treino": 11976.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "mes_compra_2017-10",
+      "coef_padrao": -0.22624802818032155,
+      "odds_ratio": 0.7975202696314825,
+      "odds_ratio_por_unidade": 0.7975202696314825,
+      "escala_por_unidade": 1.0,
+      "n_treino": 3575.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "mes_compra_2017-09",
+      "coef_padrao": -0.2320106703930021,
+      "odds_ratio": 0.7929376623050597,
+      "odds_ratio_por_unidade": 0.7929376623050597,
+      "escala_por_unidade": 1.0,
+      "n_treino": 3269.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "dia_semana_compra_Thursday",
+      "coef_padrao": -0.23894645467815684,
+      "odds_ratio": 0.787457045884808,
+      "odds_ratio_por_unidade": 0.787457045884808,
+      "escala_por_unidade": 1.0,
+      "n_treino": 11336.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_vendedor_BA",
+      "coef_padrao": -0.23931867849891417,
+      "odds_ratio": 0.787163990159051,
+      "odds_ratio_por_unidade": 0.787163990159051,
+      "escala_por_unidade": 1.0,
+      "n_treino": 435.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "dia_semana_compra_Saturday",
+      "coef_padrao": -0.24725275691764115,
+      "odds_ratio": 0.7809432797673337,
+      "odds_ratio_por_unidade": 0.7809432797673337,
+      "escala_por_unidade": 1.0,
+      "n_treino": 8379.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "mes_compra_2017-08",
+      "coef_padrao": -0.24832144163804437,
+      "odds_ratio": 0.7801091434105224,
+      "odds_ratio_por_unidade": 0.7801091434105224,
+      "escala_por_unidade": 1.0,
+      "n_treino": 3372.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_garden_tools",
+      "coef_padrao": -0.2669234755601562,
+      "odds_ratio": 0.7657316664102154,
+      "odds_ratio_por_unidade": 0.7657316664102154,
+      "escala_por_unidade": 1.0,
+      "n_treino": 2746.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "mes_compra_2017-07",
+      "coef_padrao": -0.27144276485415064,
+      "odds_ratio": 0.7622789113641725,
+      "odds_ratio_por_unidade": 0.7622789113641725,
+      "escala_por_unidade": 1.0,
+      "n_treino": 3043.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "pagamento_tipo_credit_card",
+      "coef_padrao": -0.36779536997586687,
+      "odds_ratio": 0.6922588241359768,
+      "odds_ratio_por_unidade": 0.6922588241359768,
+      "escala_por_unidade": 1.0,
+      "n_treino": 57949.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "pagamento_tipo_debit_card",
+      "coef_padrao": -0.3852133043254408,
+      "odds_ratio": 0.6803055086193573,
+      "odds_ratio_por_unidade": 0.6803055086193573,
+      "escala_por_unidade": 1.0,
+      "n_treino": 1191.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_stationery",
+      "coef_padrao": -0.38632875020230234,
+      "odds_ratio": 0.6795470877121355,
+      "odds_ratio_por_unidade": 0.6795470877121355,
+      "escala_por_unidade": 1.0,
+      "n_treino": 1777.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "pagamento_tipo_boleto",
+      "coef_padrao": -0.4324016249613924,
+      "odds_ratio": 0.6489486903468751,
+      "odds_ratio_por_unidade": 0.6489486903468751,
+      "escala_por_unidade": 1.0,
+      "n_treino": 15172.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "uf_vendedor_GO",
+      "coef_padrao": -0.6455063891146993,
+      "odds_ratio": 0.5243969259646172,
+      "odds_ratio_por_unidade": 0.5243969259646172,
+      "escala_por_unidade": 1.0,
+      "n_treino": 366.0,
+      "aumenta_risco": false
+    },
+    {
+      "variavel": "categoria_grupo_books_general_interest",
+      "coef_padrao": -0.848387770776231,
+      "odds_ratio": 0.428104578577532,
+      "odds_ratio_por_unidade": 0.428104578577532,
+      "escala_por_unidade": 1.0,
+      "n_treino": 383.0,
+      "aumenta_risco": false
+    }
+  ],
+  "top_importancia_permutacao": [
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "n_itens",
+      "importancia_media": 0.05688825399809423,
+      "importancia_std": 0.0022445171291980326
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "atraso_dias",
+      "importancia_media": 0.04443386496469677,
+      "importancia_std": 0.0013519951965091015
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "entrega_dias",
+      "importancia_media": 0.03427298903501781,
+      "importancia_std": 0.003591352439853858
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "categoria_grupo",
+      "importancia_media": 0.013846702740606353,
+      "importancia_std": 0.001621401330592045
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "manuseio_dias",
+      "importancia_media": 0.00673234484804357,
+      "importancia_std": 0.0016392474300171518
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "distancia_km",
+      "importancia_media": 0.0036087946308610563,
+      "importancia_std": 0.001049489301134408
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "uf_vendedor",
+      "importancia_media": 0.0025846800055715604,
+      "importancia_std": 0.0007034080994160238
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "preco_total",
+      "importancia_media": 0.002151840070574551,
+      "importancia_std": 0.0005025366777587569
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "n_fotos",
+      "importancia_media": 0.0016989624472027675,
+      "importancia_std": 0.00045405462794374926
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "mes_compra",
+      "importancia_media": 0.0015938643263408991,
+      "importancia_std": 0.00037986100716170504
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "frete_total",
+      "importancia_media": 0.0014851437310965387,
+      "importancia_std": 0.0006420154540773399
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "peso_g",
+      "importancia_media": 0.0012431736672540827,
+      "importancia_std": 0.0005778913718264145
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "frete_ratio",
+      "importancia_media": 0.0010989713685677581,
+      "importancia_std": 0.0005862869328362899
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "uf_cliente",
+      "importancia_media": 0.0005677206761614872,
+      "importancia_std": 0.000508333125917484
+    },
+    {
+      "modelo": "gradient_boosting",
+      "variavel": "aprovacao_h",
+      "importancia_media": -8.593158328151773e-05,
+      "importancia_std": 0.0005460149990616275
+    }
+  ],
+  "importancia_grupos": [
+    {
+      "modelo": "gradient_boosting",
+      "grupo": "Prazo e tempo de entrega",
+      "features": "atraso_dias, entrega_dias, manuseio_dias",
+      "queda_auc_media": 0.1953083966540392,
+      "queda_auc_dp": 0.006219888800281618
+    },
+    {
+      "modelo": "gradient_boosting",
+      "grupo": "Pedido (itens, preço, frete)",
+      "features": "n_itens, preco_total, frete_total, frete_ratio",
+      "queda_auc_media": 0.06222182105362113,
+      "queda_auc_dp": 0.00316247018264188
+    },
+    {
+      "modelo": "gradient_boosting",
+      "grupo": "Produto",
+      "features": "categoria_grupo, peso_g, n_fotos",
+      "queda_auc_media": 0.01569414271392424,
+      "queda_auc_dp": 0.0018962656195787276
+    },
+    {
+      "modelo": "gradient_boosting",
+      "grupo": "Geografia",
+      "features": "uf_cliente, uf_vendedor, distancia_km",
+      "queda_auc_media": 0.006389245645881081,
+      "queda_auc_dp": 0.0013247363120323207
+    },
+    {
+      "modelo": "gradient_boosting",
+      "grupo": "Calendário",
+      "features": "mes_compra, dia_semana_compra, hora_compra",
+      "queda_auc_media": 0.00033548090305700605,
+      "queda_auc_dp": 0.0007753525727694459
+    },
+    {
+      "modelo": "gradient_boosting",
+      "grupo": "Pagamento e aprovação",
+      "features": "pagamento_tipo, n_parcelas, aprovacao_h",
+      "queda_auc_media": -8.908187929225208e-05,
+      "queda_auc_dp": 0.0006128605308566212
+    },
+    {
+      "modelo": "regressao_logistica",
+      "grupo": "Prazo e tempo de entrega",
+      "features": "atraso_dias, entrega_dias, manuseio_dias",
+      "queda_auc_media": 0.18859127254291802,
+      "queda_auc_dp": 0.005825671391166691
+    },
+    {
+      "modelo": "regressao_logistica",
+      "grupo": "Pedido (itens, preço, frete)",
+      "features": "n_itens, preco_total, frete_total, frete_ratio",
+      "queda_auc_media": 0.04293245121140722,
+      "queda_auc_dp": 0.002150900159166625
+    },
+    {
+      "modelo": "regressao_logistica",
+      "grupo": "Geografia",
+      "features": "uf_cliente, uf_vendedor, distancia_km",
+      "queda_auc_media": 0.00924665075462162,
+      "queda_auc_dp": 0.0008853158801275971
+    },
+    {
+      "modelo": "regressao_logistica",
+      "grupo": "Produto",
+      "features": "categoria_grupo, peso_g, n_fotos",
+      "queda_auc_media": 0.009175333518983664,
+      "queda_auc_dp": 0.0014199005409762844
+    },
+    {
+      "modelo": "regressao_logistica",
+      "grupo": "Pagamento e aprovação",
+      "features": "pagamento_tipo, n_parcelas, aprovacao_h",
+      "queda_auc_media": 0.0021777744981513305,
+      "queda_auc_dp": 0.0007908769788403829
+    },
+    {
+      "modelo": "regressao_logistica",
+      "grupo": "Calendário",
+      "features": "mes_compra, dia_semana_compra, hora_compra",
+      "queda_auc_media": 0.0012557504493137417,
+      "queda_auc_dp": 0.0007580894670895702
+    }
+  ],
+  "shap_por_feature": [
+    {
+      "feature": "atraso_dias",
+      "shap_medio_abs": 0.3174074096211421
+    },
+    {
+      "feature": "n_itens",
+      "shap_medio_abs": 0.22267109708735405
+    },
+    {
+      "feature": "entrega_dias",
+      "shap_medio_abs": 0.2103176772251935
+    },
+    {
+      "feature": "categoria_grupo",
+      "shap_medio_abs": 0.1292252511268982
+    },
+    {
+      "feature": "manuseio_dias",
+      "shap_medio_abs": 0.06326773038101109
+    },
+    {
+      "feature": "distancia_km",
+      "shap_medio_abs": 0.04113994688091026
+    },
+    {
+      "feature": "uf_vendedor",
+      "shap_medio_abs": 0.033467746948709354
+    },
+    {
+      "feature": "uf_cliente",
+      "shap_medio_abs": 0.03332034648802724
+    },
+    {
+      "feature": "mes_compra",
+      "shap_medio_abs": 0.03039909602302837
+    },
+    {
+      "feature": "peso_g",
+      "shap_medio_abs": 0.0284138136968976
+    },
+    {
+      "feature": "aprovacao_h",
+      "shap_medio_abs": 0.020447072468740342
+    },
+    {
+      "feature": "n_parcelas",
+      "shap_medio_abs": 0.01870009903761562
+    },
+    {
+      "feature": "frete_total",
+      "shap_medio_abs": 0.01869026986340251
+    },
+    {
+      "feature": "preco_total",
+      "shap_medio_abs": 0.015807799765297153
+    },
+    {
+      "feature": "frete_ratio",
+      "shap_medio_abs": 0.015763251682197724
+    }
+  ],
+  "shap_disponivel": true
+}

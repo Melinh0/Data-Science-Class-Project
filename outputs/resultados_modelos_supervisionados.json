@@ -1,0 +1,214 @@
+{
+  "modelo_final": "gradient_boosting",
+  "nome_final": "Gradient boosting",
+  "custo_fn_fp": 3,
+  "modo_rapido": false,
+  "n_bootstrap": 300,
+  "n_treino": 76659,
+  "n_teste": 19165,
+  "taxa_positivos_treino": 0.12796931867099753,
+  "taxa_positivos_teste": 0.12794156013566396,
+  "criterio_final": "entre os modelos com AUC de CV a até 1 erro-padrão do melhor (Gradient boosting: 0.7610 - 0.0028), menor custo esperado em CV com FN = 3 x FP",
+  "melhor_auc_cv": "gradient_boosting",
+  "erro_padrao_melhor": 0.0027905346071244283,
+  "candidatos": [
+    "gradient_boosting"
+  ],
+  "metricas_teste": {
+    "regressao_logistica": {
+      "acuracia": 0.8735716149230368,
+      "precisao": 0.5080243497509684,
+      "recall": 0.3743882544861338,
+      "f1": 0.4310871096501526,
+      "f2": 0.39517864829961263,
+      "custo_medio": 0.28651187059744326,
+      "tn": 15824,
+      "fp": 889,
+      "fn": 1534,
+      "tp": 918,
+      "limiar": 0.2547051585005198
+    },
+    "arvore_decisao": {
+      "acuracia": 0.8746151839290373,
+      "precisao": 0.5125448028673835,
+      "recall": 0.40823817292006526,
+      "f1": 0.4544835414301929,
+      "f2": 0.4255590511010968,
+      "custo_medio": 0.2768066788416384,
+      "tn": 15761,
+      "fp": 952,
+      "fn": 1451,
+      "tp": 1001,
+      "limiar": 0.265
+    },
+    "knn": {
+      "acuracia": 0.8662666318810331,
+      "precisao": 0.4756685664182376,
+      "recall": 0.4424959216965742,
+      "f1": 0.4584829917599831,
+      "f2": 0.44875506658946146,
+      "custo_medio": 0.2763892512392382,
+      "tn": 15517,
+      "fp": 1196,
+      "fn": 1367,
+      "tp": 1085,
+      "limiar": 0.21832827985879413
+    },
+    "gradient_boosting": {
+      "acuracia": 0.8794156013566397,
+      "precisao": 0.5358413828164718,
+      "recall": 0.4298531810766721,
+      "f1": 0.47703100248925095,
+      "f2": 0.44755838641188966,
+      "custo_medio": 0.26647534568223324,
+      "tn": 15800,
+      "fp": 913,
+      "fn": 1398,
+      "tp": 1054,
+      "limiar": 0.24706545700596313
+    },
+    "mlp": {
+      "acuracia": 0.8705452648056353,
+      "precisao": 0.49333333333333335,
+      "recall": 0.43760195758564435,
+      "f1": 0.46379943808082996,
+      "f2": 0.4477175999332388,
+      "custo_medio": 0.2733629011218367,
+      "tn": 15611,
+      "fp": 1102,
+      "fn": 1379,
+      "tp": 1073,
+      "limiar": 0.23970817571217842
+    }
+  },
+  "dummy_teste": {
+    "acuracia": 0.8720584398643361,
+    "precisao": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "f2": 0.0,
+    "custo_medio": 0.3838246804069919,
+    "tn": 16713,
+    "fp": 0,
+    "fn": 2452,
+    "tp": 0,
+    "limiar": 0.5
+  },
+  "cv": {
+    "regressao_logistica": {
+      "auc_medio": 0.7343571464135401,
+      "auc_dp": 0.003544035718743353,
+      "auc_por_dobra": [
+        0.7326850015667922,
+        0.73578633528439,
+        0.7290347568651042,
+        0.736248824905821,
+        0.7380308134455927
+      ],
+      "custo_oof": 0.2889288928892889,
+      "limiar_custo": 0.2547051585005198,
+      "limiar_f1": 0.23017913317354372
+    },
+    "arvore_decisao": {
+      "auc_medio": 0.7432528130249965,
+      "auc_dp": 0.007692818549229847,
+      "auc_por_dobra": [
+        0.7515615695979787,
+        0.732504172394417,
+        0.7383143221584069,
+        0.7474617203302539,
+        0.7464222806439258
+      ],
+      "custo_oof": 0.27687551363832036,
+      "limiar_custo": 0.265,
+      "limiar_f1": 0.2302771855010661
+    },
+    "knn": {
+      "auc_medio": 0.7474794625588128,
+      "auc_dp": 0.007641794403116729,
+      "auc_por_dobra": [
+        0.7485056385459863,
+        0.7367047957566235,
+        0.7441846466559469,
+        0.7572043851884382,
+        0.7507978466470693
+      ],
+      "custo_oof": 0.2809585306356723,
+      "limiar_custo": 0.21832827985879413,
+      "limiar_f1": 0.1966545873593001
+    },
+    "gradient_boosting": {
+      "auc_medio": 0.7610345143869762,
+      "auc_dp": 0.0062398250750958905,
+      "auc_por_dobra": [
+        0.7605332849953149,
+        0.7507444931636775,
+        0.7622321490518811,
+        0.7647938162408117,
+        0.7668688284831958
+      ],
+      "custo_oof": 0.2706531522717489,
+      "limiar_custo": 0.24706545700596313,
+      "limiar_f1": 0.23753726321623564
+    },
+    "mlp": {
+      "auc_medio": 0.7520873592176675,
+      "auc_dp": 0.006356730430900067,
+      "auc_por_dobra": [
+        0.7471254508816352,
+        0.7447597089654825,
+        0.7514965724990221,
+        0.7584369284162741,
+        0.7586181353259236
+      ],
+      "custo_oof": 0.27735817059966866,
+      "limiar_custo": 0.23970817571217842,
+      "limiar_f1": 0.23970817571217842
+    }
+  },
+  "hiperparametros": {
+    "regressao_logistica": {
+      "C": "0.1"
+    },
+    "arvore_decisao": {
+      "criterion": "gini",
+      "max_depth": "10",
+      "min_samples_leaf": "200"
+    },
+    "knn": {
+      "n_neighbors": "301",
+      "weights": "distance",
+      "pre": "selecionadas (11 variáveis)"
+    },
+    "gradient_boosting": {
+      "learning_rate": "0.03",
+      "max_leaf_nodes": "31",
+      "min_samples_leaf": "20"
+    },
+    "mlp": {
+      "alpha": "0.001",
+      "hidden_layer_sizes": "(128,64)"
+    }
+  },
+  "na_borda_da_grade": {
+    "regressao_logistica": [],
+    "arvore_decisao": [
+      "max_depth",
+      "min_samples_leaf"
+    ],
+    "knn": [
+      "n_neighbors"
+    ],
+    "gradient_boosting": [
+      "learning_rate"
+    ],
+    "mlp": []
+  },
+  "mlp_auc_teste_sementes": [
+    0.7578705424043508,
+    0.760362033676884,
+    0.7511358147026633
+  ],
+  "regras_arvore_texto": "|--- atraso_dias <= 2.74\n|   |--- n_itens <= 1.50\n|   |   |--- entrega_dias <= 20.80\n|   |   |   |--- manuseio_dias <= 5.39\n|   |   |   |   |--- truncated branch of depth 7\n|   |   |   |--- manuseio_dias >  5.39\n|   |   |   |   |--- truncated branch of depth 7\n|   |   |--- entrega_dias >  20.80\n|   |   |   |--- entrega_dias <= 30.66\n|   |   |   |   |--- truncated branch of depth 7\n|   |   |   |--- entrega_dias >  30.66\n|   |   |   |   |--- truncated branch of depth 3\n|   |--- n_itens >  1.50\n|   |   |--- distancia_km <= 175.68\n|   |   |   |--- atraso_dias <= -13.03\n|   |   |   |   |--- truncated branch of depth 2\n|   |   |   |--- atraso_dias >  -13.03\n|   |   |   |   |--- truncated branch of depth 5\n|   |   |--- distancia_km >  175.68\n|   |   |   |--- preco_total <= 119.99\n|   |   |   |   |--- truncated branch of depth 6\n|   |   |   |--- preco_total >  119.99\n|   |   |   |   |--- truncated branch of depth 7\n|--- atraso_dias >  2.74\n|   |--- atraso_dias <= 5.86\n|   |   |--- aprovacao_h <= 3.74\n|   |   |   |--- atraso_dias <= 3.73\n|   |   |   |   |--- class: 1\n|   |   |   |--- atraso_dias >  3.73\n|   |   |   |   |--- truncated branch of depth 2\n|   |   |--- aprovacao_h >  3.74\n|   |   |   |--- hora_compra <= 15.50\n|   |   |   |   |--- class: 0\n|   |   |   |--- hora_compra >  15.50\n|   |   |   |   |--- class: 0\n|   |--- atraso_dias >  5.86\n|   |   |--- atraso_dias <= 35.66\n|   |   |   |--- atraso_dias <= 7.92\n|   |   |   |   |--- truncated branch of depth 3\n|   |   |   |--- atraso_dias >  7.92\n|   |   |   |   |--- truncated branch of depth 5\n|   |   |--- atraso_dias >  35.66\n|   |   |   |--- class: 1\n",
+  "tempo_total_s": 953.0
+}

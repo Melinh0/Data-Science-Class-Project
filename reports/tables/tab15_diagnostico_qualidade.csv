@@ -1,0 +1,52 @@
+categoria,item,n,pct,decisao,justificativa
+Ausentes,manuseio_dias,1.0,0.001,imputar pela mediana (treino),"ausência residual (< 0,1%)"
+Ausentes,aprovacao_h,14.0,0.015,imputar pela mediana (treino),"ausência residual (< 0,1%)"
+Ausentes,distancia_km,475.0,0.496,imputar pela mediana (treino),CEP sem coordenadas na base de geolocalização
+Ausentes,n_parcelas,1.0,0.001,imputar pela mediana (treino),"ausência residual (< 0,1%)"
+Ausentes,peso_g,16.0,0.017,imputar pela mediana (treino),"ausência residual (< 0,1%)"
+Ausentes,n_fotos,1349.0,1.408,imputar pela mediana (treino),produto sem cadastro de fotos; MCAR plausível
+Ausentes,pagamento_tipo,1.0,0.001,imputar pela moda (treino),"ausência pontual, categoria dominante"
+Duplicatas,order_id repetido,0.0,0.0,nenhuma ação,granularidade = 1 pedido por linha (revisões duplicadas tratadas em features.py)
+Duplicatas,linhas idênticas nas features (sem ids),0.0,0.0,mantidas,pedidos distintos (order_id únicos) podem coincidir em todas as features; sem evidência de duplicação
+Categorias equivalentes,costruction_tools_garden → construction_tools_garden,,,unificadas em features.py,erro de grafia no dicionário de categorias
+Categorias equivalentes,home_confort → home_comfort,,,unificadas em features.py,erro de grafia no dicionário de categorias
+Categorias equivalentes,home_comfort_2 → home_comfort,,,unificadas em features.py,versão '_2' da mesma família (hipótese de domínio)
+Categorias equivalentes,home_appliances_2 → home_appliances,,,unificadas em features.py,versão '_2' da mesma família (hipótese de domínio)
+Categorias equivalentes,fashio_female_clothing → fashion_female_clothing,,,unificadas em features.py,erro de grafia no dicionário de categorias
+Valores inválidos,manuseio_dias: postagem anterior à compra,134.0,0.14,→ NaN e imputação pelo treino,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,manuseio_dias: postagem posterior à entrega ao cliente,23.0,0.024,→ NaN e imputação pelo treino,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,entrega_dias: entrega anterior ou igual à compra,0.0,0.0,nenhuma ocorrência,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,aprovacao_h: aprovação anterior à compra,0.0,0.0,nenhuma ocorrência,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,n_parcelas: pagamento com 0 parcelas (mínimo possível = 1),2.0,0.002,→ NaN e imputação pelo treino,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,peso_g: peso do produto ≤ 0 g,6.0,0.006,→ NaN e imputação pelo treino,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,distancia_km: distância > 4500 km (fora do território brasileiro),4.0,0.004,→ NaN e imputação pelo treino,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,preco_total: preço total ≤ 0,0.0,0.0,nenhuma ocorrência,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,frete_total: frete negativo,0.0,0.0,nenhuma ocorrência,incoerente com o domínio; não corrigível com a informação disponível
+Valores inválidos,n_itens: pedido sem itens,0.0,0.0,nenhuma ocorrência,incoerente com o domínio; não corrigível com a informação disponível
+Valores extremos,atraso_dias (> 3×IQR: 620 sup. / 204 inf.; 78% de 1-2 no top 1%),824.0,0.86,mantidos (legítimo),atrasos longos coerentes com entrega_dias e com notas baixas
+Valores extremos,entrega_dias (> 3×IQR: 1341 sup. / 0 inf.; 77% de 1-2 no top 1%),1341.0,1.399,mantidos (legítimo),entregas > 60 dias existem na operação e quase sempre estão atrasadas
+Valores extremos,manuseio_dias (> 3×IQR: 2195 sup. / 0 inf.; 51% de 1-2 no top 1%),2195.0,2.291,mantidos (legítimo na cauda positiva),negativos já tratados como inválidos; cauda positiva = vendedor lento
+Valores extremos,aprovacao_h (> 3×IQR: 3647 sup. / 0 inf.; 15% de 1-2 no top 1%),3647.0,3.806,mantidos (legítimo),boletos aprovados após vários dias
+Valores extremos,frete_total (> 3×IQR: 4857 sup. / 0 inf.; 27% de 1-2 no top 1%),4857.0,5.069,mantidos (legítimo),itens pesados/volumosos e rotas longas; frete é coerente com peso e distância
+Valores extremos,preco_total (> 3×IQR: 3897 sup. / 0 inf.; 19% de 1-2 no top 1%),3897.0,4.067,mantidos (legítimo),itens de alto valor existem no marketplace; preço = soma dos itens do pedido
+Valores extremos,valor_pedido (> 3×IQR: 3804 sup. / 0 inf.; 19% de 1-2 no top 1%),3804.0,3.97,mantidos (legítimo (redundante)),soma de preço e frete; extremos são pedidos caros e coerentes com preco_total
+Valores extremos,frete_ratio (> 3×IQR: 66 sup. / 0 inf.; 17% de 1-2 no top 1%),66.0,0.069,mantidos (legítimo),pedidos baratos com frete alto (razão alta) são esperados
+Valores extremos,preco_unitario_medio (> 3×IQR: 3565 sup. / 0 inf.; 17% de 1-2 no top 1%),3565.0,3.72,mantidos (legítimo (redundante)),preço médio dos itens; extremos são itens caros
+Valores extremos,distancia_km (> 3×IQR: 589 sup. / 0 inf.; 16% de 1-2 no top 1%),589.0,0.615,mantidos (legítimo até o limite),acima do limite geográfico = erro de coordenada (tratado)
+Valores extremos,n_parcelas (> 3×IQR: 161 sup. / 0 inf.; 20% de 1-2 no top 1%),161.0,0.168,mantidos (legítimo),parcelamentos longos (até 24x) são possíveis
+Valores extremos,peso_g (> 3×IQR: 9456 sup. / 0 inf.; 17% de 1-2 no top 1%),9456.0,9.868,mantidos (legítimo),móveis e eletrodomésticos pesados (até ~40 kg)
+Valores extremos,n_fotos (> 3×IQR: 475 sup. / 0 inf.; 14% de 1-2 no top 1%),475.0,0.496,mantidos (legítimo),anúncios com muitas fotos
+Constantes / identificadores,order_status (constante),95824.0,100.0,descartada,sem variância após o recorte analítico
+Constantes / identificadores,order_id (identificador),95824.0,100.0,descartada,não generaliza; risco de memorização
+Constantes / identificadores,customer_id (identificador),95824.0,100.0,descartada,não generaliza; risco de memorização
+Constantes / identificadores,customer_unique_id (identificador),95824.0,100.0,descartada,não generaliza; risco de memorização
+Constantes / identificadores,cep_cliente (identificador),95824.0,100.0,descartada,não generaliza; risco de memorização
+Constantes / identificadores,seller_zip (identificador),95824.0,100.0,descartada,não generaliza; risco de memorização
+Constantes / identificadores,cidade_cliente (identificador),95824.0,100.0,descartada,não generaliza; risco de memorização
+Redundância,preco_total × valor_pedido (r = 0.996),,,ver decisão abaixo,correlação linear muito alta
+Redundância,preco_total × preco_unitario_medio (r = 0.932),,,ver decisão abaixo,correlação linear muito alta
+Redundância,valor_pedido × preco_unitario_medio (r = 0.920),,,ver decisão abaixo,correlação linear muito alta
+Redundância,identidade: valor_pedido = preco_total + frete_total (desvio máx. = 0.00),,,variável derivada removida,contém exatamente a mesma informação das variáveis originais
+Redundância,identidade: preco_unitario_medio = preco_total / n_itens (desvio máx. = 0.01),,,variável derivada removida,contém exatamente a mesma informação das variáveis originais
+Redundância,remoção de valor_pedido,,,descartada do modelo,identidade exata: preco_total + frete_total
+Redundância,remoção de preco_unitario_medio,,,descartada do modelo,"derivada: preco_total / n_itens (r > 0,9 com preco_total)"

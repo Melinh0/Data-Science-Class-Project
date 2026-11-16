@@ -1,0 +1,104 @@
+{
+  "selecionadas": [
+    "entrega_dias",
+    "n_itens",
+    "atraso_dias",
+    "manuseio_dias",
+    "categoria_grupo",
+    "distancia_km",
+    "preco_total",
+    "mes_compra",
+    "frete_total",
+    "uf_cliente",
+    "peso_g"
+  ],
+  "descartadas": [
+    "n_fotos",
+    "n_parcelas",
+    "uf_vendedor",
+    "frete_ratio",
+    "aprovacao_h",
+    "pagamento_tipo",
+    "hora_compra",
+    "dia_semana_compra"
+  ],
+  "criterio": ">= 3 de 5 métodos",
+  "por_metodo": {
+    "filtro_mi": [
+      "entrega_dias",
+      "n_itens",
+      "atraso_dias",
+      "manuseio_dias",
+      "preco_total"
+    ],
+    "filtro_auc": [
+      "entrega_dias",
+      "n_itens",
+      "atraso_dias",
+      "manuseio_dias",
+      "categoria_grupo",
+      "distancia_km",
+      "preco_total",
+      "mes_compra",
+      "frete_total",
+      "uf_cliente",
+      "peso_g",
+      "n_fotos",
+      "n_parcelas",
+      "uf_vendedor"
+    ],
+    "wrapper_forward": [
+      "entrega_dias",
+      "n_itens",
+      "categoria_grupo",
+      "distancia_km"
+    ],
+    "embutido_l1": [
+      "entrega_dias",
+      "n_itens",
+      "atraso_dias",
+      "manuseio_dias",
+      "categoria_grupo",
+      "distancia_km",
+      "preco_total",
+      "mes_compra",
+      "frete_total",
+      "uf_cliente",
+      "peso_g",
+      "n_fotos",
+      "n_parcelas",
+      "uf_vendedor",
+      "frete_ratio",
+      "aprovacao_h",
+      "pagamento_tipo",
+      "hora_compra",
+      "dia_semana_compra"
+    ],
+    "embutido_rf": [
+      "entrega_dias",
+      "n_itens",
+      "atraso_dias",
+      "manuseio_dias",
+      "categoria_grupo",
+      "distancia_km",
+      "preco_total",
+      "mes_compra",
+      "frete_total",
+      "uf_cliente",
+      "peso_g",
+      "frete_ratio"
+    ]
+  },
+  "limiares": {
+    "mi_sombra_max": 0.006286342046654125,
+    "auc_sombra_max": 0.5127578880442181,
+    "rf_sombra_max": 0.006148312489856817,
+    "c_l1": 0.3,
+    "ganho_min_wrapper": 0.002
+  },
+  "custo_wrapper": {
+    "n_ajustes": 85,
+    "segundos": 7.3
+  },
+  "n_amostra": 40000
+}
